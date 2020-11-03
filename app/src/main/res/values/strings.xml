@@ -2,4 +2,5 @@
     <string name="app_name">NewHabit</string>
     <string name="greeting">Your new habit!</string>
     <string name="message_future">You will soon find out</string>
+    <string name="show_statistics">Statistics</string>
 </resources>
