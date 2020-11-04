@@ -17,6 +17,6 @@ class StatisticsActivity : AppCompatActivity() {
 
         val findViewById = findViewById<TextView>(R.id.statistics_text_view)
 
-        findViewById.text = name.toString() + " " + count
+        findViewById.text = "${name.toString()}: $count"
     }
 }
