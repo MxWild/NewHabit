@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             ViewCompat.getTransitionName(imageView)
         )
 
-        intent.putExtra(StatisticsActivity.statistics, Statistics("Push Ups", 1))
+        intent.putExtra(StatisticsActivity.STATISTICS, Statistics("Push Ups", 1))
         startActivity(intent, options.toBundle())
     }
 }
