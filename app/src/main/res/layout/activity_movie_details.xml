@@ -9,7 +9,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/name"
+        app:layout_constraintStart_toEndOf="@+id/name">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideVerticalLeft"
@@ -32,7 +34,6 @@
             android:contentDescription="@string/background_image"
             android:src="@drawable/background_movies_detail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="-30dp" />
 
@@ -47,7 +48,7 @@
             android:text="@string/back_narrow"
             android:textColor="@color/text_color"
             android:textSize="12sp"
-            app:drawableStartCompat="@drawable/ic_baseline_arrow_back_ios_24"
+            app:drawableStartCompat="@drawable/back_arrow"
             app:layout_constraintStart_toStartOf="@id/guideVerticalLeft"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -101,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/star1"
-            android:src="@drawable/ic_baseline_star_24_fill"
+            android:src="@drawable/fill_star"
             app:layout_constraintBottom_toTopOf="@id/barrierBottomStars"
             app:layout_constraintStart_toEndOf="@id/guideVerticalLeft"
             app:layout_constraintTop_toBottomOf="@id/movie_category" />
@@ -112,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/star2"
-            android:src="@drawable/ic_baseline_star_24_fill"
+            android:src="@drawable/fill_star"
             app:layout_constraintBottom_toBottomOf="@+id/star1"
             app:layout_constraintStart_toEndOf="@id/star1"
             app:layout_constraintTop_toTopOf="@+id/star1" />
@@ -123,7 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/star3"
-            android:src="@drawable/ic_baseline_star_24_fill"
+            android:src="@drawable/fill_star"
             app:layout_constraintBottom_toBottomOf="@+id/star2"
             app:layout_constraintStart_toEndOf="@id/star2"
             app:layout_constraintTop_toTopOf="@+id/star2" />
@@ -134,7 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/star4"
-            android:src="@drawable/ic_baseline_star_24_fill"
+            android:src="@drawable/fill_star"
             app:layout_constraintBottom_toBottomOf="@+id/star3"
             app:layout_constraintStart_toEndOf="@id/star3"
             app:layout_constraintTop_toTopOf="@+id/star3" />
@@ -145,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/star5"
-            android:src="@drawable/ic_baseline_star_border_24_not_fill"
+            android:src="@drawable/not_fill_star"
             app:layout_constraintBottom_toBottomOf="@+id/star4"
             app:layout_constraintStart_toEndOf="@id/star4"
             app:layout_constraintTop_toTopOf="@+id/star4" />
@@ -180,22 +181,24 @@
             android:textColor="#ECECEC"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/guideVerticalLeft"
-            app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@id/barrierBottomStars" />
 
         <TextView
             android:id="@+id/movie_description"
-            android:layout_width="357dp"
-            android:layout_height="84dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:lines="4"
+            android:layout_marginBottom="4dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:text="@string/movie_description"
             android:textColor="#6D6D80"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@id/guideVerticalLeft"
-            app:layout_constraintTop_toBottomOf="@id/story_line" />
+            app:layout_constraintBottom_toTopOf="@id/barrier"
+            app:layout_constraintTop_toBottomOf="@+id/story_line" />
 
         <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
@@ -221,9 +224,8 @@
             android:contentDescription="@string/actor1"
             android:src="@drawable/rdm1"
             app:layout_constraintEnd_toStartOf="@+id/actor2"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toEndOf="@id/guideVerticalLeft"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cast_text" />
 
         <TextView
@@ -239,11 +241,10 @@
             android:id="@+id/actor2"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="8dp"
             android:contentDescription="@string/actor2"
             android:src="@drawable/ce1"
             app:layout_constraintEnd_toStartOf="@+id/actor3"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toEndOf="@+id/actor1"
             app:layout_constraintTop_toTopOf="@+id/actor1" />
 
@@ -260,11 +261,10 @@
             android:id="@+id/actor3"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="8dp"
             android:contentDescription="@string/actor3"
             android:src="@drawable/mr1"
             app:layout_constraintEnd_toStartOf="@+id/actor4"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toEndOf="@+id/actor2"
             app:layout_constraintTop_toTopOf="@+id/actor2" />
 
@@ -281,11 +281,10 @@
             android:id="@+id/actor4"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="8dp"
             android:contentDescription="@string/actor4"
             android:src="@drawable/kh1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@id/guideVerticalRight"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toEndOf="@+id/actor3"
             app:layout_constraintTop_toTopOf="@+id/actor3" />
 
