@@ -15,13 +15,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_movie_details)
 
-        val mainTextView = findViewById<TextView>(R.id.main_text_view)
+/*        val mainTextView = findViewById<TextView>(R.id.main_text_view)
         val mainStatisticButton = findViewById<Button>(R.id.show_statistics_btn)
 
         mainTextView.setOnClickListener { showHelpWindow() }
-        mainStatisticButton.setOnClickListener { showStatistics() }
+        mainStatisticButton.setOnClickListener { showStatistics() }*/
     }
 
     private fun showHelpWindow() {
