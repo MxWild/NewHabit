@@ -13,7 +13,7 @@
     <string name="movie_title" translatable="false">Avengers:\nEnd Game</string>
     <string name="storyline">Storyline</string>
     <string name="category">Action, Adventure, Fantasy</string>
-    <string name="count_reviews">125 REVIEWS</string>
+    <string name="count_reviews">125 reviews</string>
     <string name="movie_description">After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos\' actions and restore balance to the universe.</string>
 
     <string name="actors">Cast</string>

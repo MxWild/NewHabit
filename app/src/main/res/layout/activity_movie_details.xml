@@ -29,13 +29,14 @@
 
         <ImageView
             android:id="@+id/top_background"
-            android:layout_width="530dp"
-            android:layout_height="298dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:contentDescription="@string/background_image"
+            android:scaleType="fitStart"
             android:src="@drawable/background_movies_detail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="-30dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/back_narrow"
@@ -157,6 +158,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="8dp"
             android:text="@string/count_reviews"
+            android:textAllCaps="true"
             android:textColor="#6D6D80"
             app:layout_constraintBottom_toBottomOf="@+id/star5"
             app:layout_constraintStart_toEndOf="@id/star5"
