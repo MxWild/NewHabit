@@ -3,4 +3,28 @@
     <string name="greeting">Your new habit!</string>
     <string name="message_future">You will soon find out</string>
     <string name="show_statistics">Statistics</string>
+
+    <string name="back_narrow">Back</string>
+    <string name="back_to_movies">Back to movies</string>
+    <string name="background_image">background image</string>
+
+    <string name="pg" translatable="false">13+</string>
+
+    <string name="movie_title" translatable="false">Avengers:\nEnd Game</string>
+    <string name="storyline">Storyline</string>
+    <string name="category">Action, Adventure, Fantasy</string>
+    <string name="count_reviews">125 reviews</string>
+    <string name="movie_description">After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos\' actions and restore balance to the universe.</string>
+
+    <string name="actors">Cast</string>
+    <string name="actor1">Robert Downey Jr.</string>
+    <string name="actor2">Chris Evans</string>
+    <string name="actor3">Mark Ruffalo</string>
+    <string name="actor4">Chris Hemsworth</string>
+
+    <string name="star1">start1</string>
+    <string name="star2">start2</string>
+    <string name="star3">start3</string>
+    <string name="star4">start4</string>
+    <string name="star5">start5</string>
 </resources>
