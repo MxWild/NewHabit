@@ -88,8 +88,10 @@
 
         <TextView
             android:id="@+id/movie_category"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:fontFamily="@font/roboto"
             android:text="@string/category"
             android:textColor="#FF3466"
@@ -175,21 +177,23 @@
 
         <TextView
             android:id="@+id/story_line"
-            android:layout_width="wrap_content"
+            style="@style/white_14sp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="30dp"
-            android:fontFamily="@font/roboto"
+            android:layout_marginEnd="16dp"
             android:text="@string/storyline"
-            android:textColor="#ECECEC"
-            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/guideVerticalLeft"
             app:layout_constraintTop_toTopOf="@id/barrierBottomStars" />
 
         <TextView
             android:id="@+id/movie_description"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="4dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
@@ -208,13 +212,13 @@
 
         <TextView
             android:id="@+id/cast_text"
-            android:layout_width="wrap_content"
+            style="@style/white_14sp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:fontFamily="@font/roboto"
+            android:layout_marginEnd="16dp"
             android:text="@string/actors"
-            android:textColor="@color/white"
-            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/guideVerticalLeft"
             app:layout_constraintTop_toBottomOf="@id/movie_description" />
 
@@ -232,10 +236,10 @@
 
         <TextView
             android:id="@+id/actor1_name"
+            style="@style/white_14sp"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="@string/actor1"
-            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="@+id/actor1"
             app:layout_constraintTop_toBottomOf="@id/actor1" />
 
@@ -243,19 +247,20 @@
             android:id="@+id/actor2"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginTop="8dp"
             android:contentDescription="@string/actor2"
             android:src="@drawable/ce1"
             app:layout_constraintEnd_toStartOf="@+id/actor3"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toEndOf="@+id/actor1"
-            app:layout_constraintTop_toTopOf="@+id/actor1" />
+            app:layout_constraintTop_toBottomOf="@id/cast_text" />
 
         <TextView
             android:id="@+id/actor2_name"
+            style="@style/white_14sp"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="@string/actor2"
-            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="@+id/actor2"
             app:layout_constraintTop_toBottomOf="@id/actor2" />
 
@@ -263,19 +268,20 @@
             android:id="@+id/actor3"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginTop="8dp"
             android:contentDescription="@string/actor3"
             android:src="@drawable/mr1"
             app:layout_constraintEnd_toStartOf="@+id/actor4"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toEndOf="@+id/actor2"
-            app:layout_constraintTop_toTopOf="@+id/actor2" />
+            app:layout_constraintTop_toBottomOf="@id/cast_text" />
 
         <TextView
             android:id="@+id/actor3_name"
+            style="@style/white_14sp"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="@string/actor3"
-            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="@+id/actor3"
             app:layout_constraintTop_toBottomOf="@id/actor3" />
 
@@ -283,19 +289,20 @@
             android:id="@+id/actor4"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginTop="8dp"
             android:contentDescription="@string/actor4"
             android:src="@drawable/kh1"
             app:layout_constraintEnd_toStartOf="@id/guideVerticalRight"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toEndOf="@+id/actor3"
-            app:layout_constraintTop_toTopOf="@+id/actor3" />
+            app:layout_constraintTop_toBottomOf="@id/cast_text" />
 
         <TextView
             android:id="@+id/actor4_name"
+            style="@style/white_14sp"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="@string/actor4"
-            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="@+id/actor4"
             app:layout_constraintTop_toBottomOf="@id/actor4" />
 

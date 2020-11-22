@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="white_14sp">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">#ECECEC</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>
