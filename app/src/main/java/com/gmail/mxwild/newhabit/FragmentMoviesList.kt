@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.replace
 
 class FragmentMoviesList : Fragment() {
 
@@ -16,13 +17,12 @@ class FragmentMoviesList : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_movies_list, container, false)
 
-
         view.findViewById<ImageView>(R.id.back_img_movie_list).apply {
             setOnClickListener {
-                fragmentManager?.beginTransaction()
-                    ?.addToBackStack(null)
-                    ?.replace(R.id.fragment_container, FragmentMoviesDetails())
-                    ?.commit()
+                parentFragmentManager.beginTransaction()
+                    .addToBackStack(null)
+                    .replace<FragmentMoviesDetails>(R.id.fragment_container)
+                    .commit()
             }
         }
 
