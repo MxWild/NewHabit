@@ -17,9 +17,5 @@ class MainActivity : AppCompatActivity() {
                 add<FragmentMoviesList>(R.id.fragment_container)
             }
         }
-
-//        supportFragmentManager.beginTransaction()
-//            .add(R.id.fragment_container, FragmentMoviesList())
-//            .commit()
     }
 }

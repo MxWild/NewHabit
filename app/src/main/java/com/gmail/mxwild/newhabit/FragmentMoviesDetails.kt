@@ -16,11 +16,9 @@ class FragmentMoviesDetails : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_movies_details, container, false)
 
-        view.findViewById<TextView>(R.id.back_narrow).apply {
-            setOnClickListener {
+        view.findViewById<TextView>(R.id.back_narrow).setOnClickListener {
                 parentFragmentManager.popBackStack()
             }
-        }
 
         return view
     }

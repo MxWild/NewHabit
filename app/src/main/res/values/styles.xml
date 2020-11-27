@@ -19,9 +19,4 @@
         <item name="android:textSize">8sp</item>
     </style>
     
-<!--    <style name="movie_rating_bar" parent="@android:style/Widget.RatingBar.Small">
-        <item name="android:progressDrawable">@drawable/custom_ratingbar</item>
-        <item name="android:minHeight">8dp</item>
-        <item name="android:maxHeight">12dp</item>
-    </style>-->
 </resources>
