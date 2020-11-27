@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">NewHabit</string>
-    <string name="greeting">Your new habit!</string>
-    <string name="message_future">You will soon find out</string>
-    <string name="show_statistics">Statistics</string>
 
     <string name="back_narrow">Back</string>
     <string name="back_to_movies">Back to movies</string>
@@ -22,11 +19,6 @@
     <string name="actor3">Mark Ruffalo</string>
     <string name="actor4">Chris Hemsworth</string>
 
-    <string name="star1">start1</string>
-    <string name="star2">start2</string>
-    <string name="star3">start3</string>
-    <string name="star4">start4</string>
-    <string name="star5">start5</string>
     <string name="movies_list">Movies list</string>
     <string name="movie_length">137 min</string>
     <string name="movie_poster_description">movie_poster</string>
