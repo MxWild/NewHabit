@@ -109,14 +109,13 @@
             android:id="@+id/count_reviewers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/margin_2x4"
+            android:layout_marginTop="@dimen/margin_2x2"
             android:text="@string/count_reviews"
             android:textAllCaps="true"
             android:textColor="#6D6D80"
             app:layout_constraintBottom_toBottomOf="@+id/movies_rating_bar"
             app:layout_constraintStart_toEndOf="@id/movies_rating_bar"
-            app:layout_constraintTop_toTopOf="@+id/movies_rating_bar"
-            tools:ignore="RtlSymmetry" />
+            app:layout_constraintTop_toTopOf="@+id/movies_rating_bar" />
 
         <TextView
             android:id="@+id/story_line"
