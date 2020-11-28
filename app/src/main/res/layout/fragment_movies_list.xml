@@ -9,9 +9,9 @@
         android:id="@+id/movies_list"
         style="@style/white_14sp"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_marginTop="44dp"
-        android:drawablePadding="8dp"
+        android:layout_height="@dimen/size_44"
+        android:layout_marginTop="@dimen/size_44"
+        android:drawablePadding="@dimen/padding_2x4"
         android:padding="@dimen/padding_3x4"
         android:paddingTop="@dimen/padding_2x7"
         android:text="@string/movies_list"
@@ -22,8 +22,8 @@
 
     <View
         android:id="@+id/view_movie_list"
-        android:layout_width="170dp"
-        android:layout_height="296dp"
+        android:layout_width="@dimen/view_width"
+        android:layout_height="@dimen/view_height"
         android:layout_marginStart="@dimen/margin_3x4"
         android:layout_marginTop="@dimen/margin_2x9"
         android:background="@drawable/rectangle_shape"
@@ -32,8 +32,8 @@
 
     <ImageView
         android:id="@+id/back_img_movie_list"
-        android:layout_width="166dp"
-        android:layout_height="248dp"
+        android:layout_width="@dimen/preview_width"
+        android:layout_height="@dimen/preview_height"
         android:layout_margin="@dimen/margin_2x"
         android:adjustViewBounds="true"
         android:contentDescription="@string/movie_poster_description"
@@ -73,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_3x4"
-        android:layout_marginTop="214dp"
+        android:layout_marginTop="@dimen/margin_214"
         android:text="@string/category"
         app:layout_constraintStart_toStartOf="@id/view_movie_list"
         app:layout_constraintTop_toTopOf="@id/view_movie_list" />
@@ -90,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@id/movie_category_list"
         app:numStars="5"
         app:rating="4"
-        app:spacing="2dp"
+        app:spacing="@dimen/spacing_2x"
         app:step="0.5" />
 
     <TextView
