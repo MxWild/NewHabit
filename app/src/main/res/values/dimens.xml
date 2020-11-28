@@ -5,7 +5,7 @@
     <dimen name="margin_2x2">4dp</dimen>
     <dimen name="margin_2x3">6dp</dimen>
     <dimen name="margin_2x4">8dp</dimen>
-    <dimen name="margin_2x9">18dp</dimen>
+    <dimen name="margin_2x8">16dp</dimen>
     <dimen name="margin_2x12">24dp</dimen>
 
     <dimen name="margin_3x4">12dp</dimen>
