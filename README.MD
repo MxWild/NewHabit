@@ -4,4 +4,4 @@
 
 Фрагмент fragment_movie_list.xml:[screenshot_movies_list](img/screenshot_movies_list.PNG)
 
-Фрагмент fragment_movie_details.xml, верстка перенесена из активити:[screenshot_movies_details](img/screenshot_movies_details.PNG)
+Фрагмент fragment_movie_details.xml, верстка перенесена из активити:[screenshot_movie_details](img/screenshot_movie_details.PNG)
