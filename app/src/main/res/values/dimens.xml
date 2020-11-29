@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="margin_2x">2dp</dimen>
+    <dimen name="margin_2x2">4dp</dimen>
+    <dimen name="margin_2x3">6dp</dimen>
+    <dimen name="margin_2x4">8dp</dimen>
+    <dimen name="margin_2x8">16dp</dimen>
+    <dimen name="margin_2x12">24dp</dimen>
+
+    <dimen name="margin_3x4">12dp</dimen>
+    <dimen name="margin_3x10">30dp</dimen>
+
+    <dimen name="margin_4x4">16dp</dimen>
+
+    <dimen name="margin_8x10">80dp</dimen>
+
+    <dimen name="margin_214">214dp</dimen>
+
+    <dimen name="padding_2x3">6dp</dimen>
+    <dimen name="padding_2x4">8dp</dimen>
+    <dimen name="padding_2x7">14dp</dimen>
+
+    <dimen name="padding_3x4">12dp</dimen>
+
+    <dimen name="view_width">170dp</dimen>
+    <dimen name="view_height">296dp</dimen>
+
+    <dimen name="preview_width">166dp</dimen>
+    <dimen name="preview_height">248dp</dimen>
+
+    <dimen name="spacing_2x">2dp</dimen>
+
+    <dimen name="size_44">44dp</dimen>
+</resources>

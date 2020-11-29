@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">NewHabit</string>
-    <string name="greeting">Твоя новая привычка!</string>
-    <string name="message_future">Скоро ты все узнаешь</string>
-    <string name="show_statistics">Статистика</string>
     <string name="back_narrow">Назад</string>
     <string name="background_image">background image</string>
     <string name="back_to_movies">Назад</string>
