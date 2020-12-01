@@ -36,7 +36,7 @@
         android:layout_height="@dimen/preview_height"
         android:layout_margin="@dimen/margin_2x"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/movie_poster_description"
+        android:contentDescription="@null"
         android:foreground="@drawable/rectangle_shape"
         android:scaleType="centerCrop"
         android:src="@drawable/img_avengers_end_game"
@@ -50,7 +50,7 @@
         android:layout_marginStart="@dimen/margin_2x3"
         android:layout_marginTop="@dimen/margin_2x4"
         android:background="@drawable/pg_rectangle"
-        android:contentDescription="@string/pg_background_description"
+        android:contentDescription="@null"
         app:layout_constraintStart_toStartOf="@id/back_img_movie_list"
         app:layout_constraintTop_toTopOf="@id/back_img_movie_list" />
 
