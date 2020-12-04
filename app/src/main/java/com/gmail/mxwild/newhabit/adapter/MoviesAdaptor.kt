@@ -1,4 +1,4 @@
-package com.gmail.mxwild.newhabit
+package com.gmail.mxwild.newhabit.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.aids61517.easyratingview.EasyRatingView
+import com.gmail.mxwild.newhabit.R
 import com.gmail.mxwild.newhabit.model.Movie
 
 class MoviesAdaptor(private val listener: OnItemClickListener) :

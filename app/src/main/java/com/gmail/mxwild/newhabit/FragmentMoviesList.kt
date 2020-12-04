@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.mxwild.newhabit.domain.MoviesDataSource
+import com.gmail.mxwild.newhabit.adapter.MoviesAdaptor
+import com.gmail.mxwild.newhabit.adapter.OnItemClickListener
+import com.gmail.mxwild.newhabit.domain.MockMoviesData
 
 class FragmentMoviesList : Fragment() {
 
@@ -35,7 +36,7 @@ class FragmentMoviesList : Fragment() {
     }
 
     private fun loadMovies() {
-        adapter.bindMovies(MoviesDataSource().getMovies())
+        adapter.bindMovies(MockMoviesData().getMovies())
         adapter.notifyDataSetChanged()
     }
 

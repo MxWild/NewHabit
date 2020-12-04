@@ -3,7 +3,7 @@ package com.gmail.mxwild.newhabit.domain
 import com.gmail.mxwild.newhabit.R
 import com.gmail.mxwild.newhabit.model.Movie
 
-class MoviesDataSource {
+class MockMoviesData {
     fun getMovies(): List<Movie> {
         return listOf(
             Movie(
