@@ -4,26 +4,41 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.replace
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.gmail.mxwild.newhabit.domain.MoviesDataSource
 
 class FragmentMoviesList : Fragment() {
+
+    private lateinit var adapter: MoviesAdaptor
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_movies_list, container, false)
+        return inflater.inflate(R.layout.fragment_movies_list, container, false)
+    }
 
-        view.findViewById<ImageView>(R.id.back_img_movie_list).setOnClickListener {
-                parentFragmentManager.beginTransaction()
-                    .addToBackStack(null)
-                    .replace<FragmentMoviesDetails>(R.id.fragment_container)
-                    .commit()
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val recycler: RecyclerView = view.findViewById(R.id.movie_list)
+        adapter = MoviesAdaptor()
+        recycler.layoutManager = GridLayoutManager(context, 2)
+        recycler.adapter = adapter
+    }
 
-        return view
+    override fun onStart() {
+        super.onStart()
+        loadMovies()
+    }
+
+    private fun loadMovies() {
+        adapter.bindMovies(MoviesDataSource().getMovies())
+        adapter.notifyDataSetChanged()
+    }
+
+    companion object {
+        fun newInstance() = FragmentMoviesList()
     }
 }

@@ -5,12 +5,12 @@
     <string name="back_to_movies">Back to movies</string>
     <string name="background_image">background image</string>
 
-    <string name="pg" translatable="false">13+</string>
+    <string name="pg" translatable="false">%d+</string>
 
     <string name="movie_title" translatable="false">Avengers: End Game</string>
     <string name="storyline">Storyline</string>
     <string name="category">Action, Adventure, Fantasy</string>
-    <string name="count_reviews" >125 reviews</string>
+    <string name="count_reviews">%d reviews</string>
     <string name="movie_description">After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos\' actions and restore balance to the universe.</string>
 
     <string name="actors">Cast</string>
@@ -20,7 +20,7 @@
     <string name="actor4">Chris Hemsworth</string>
 
     <string name="movies_list">Movies list</string>
-    <string name="movie_length">137 min</string>
+    <string name="movie_length">%d min</string>
     <string name="movie_poster_description">movie_poster</string>
     <string name="pg_background_description">pg_background</string>
 </resources>
