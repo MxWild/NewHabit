@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,8 +24,8 @@ class FragmentMoviesList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recycler: RecyclerView = view.findViewById(R.id.movie_list)
-        adapter = MoviesAdaptor()
-        recycler.layoutManager = GridLayoutManager(context, 2)
+        adapter = MoviesAdaptor(clickListener)
+//        recycler.layoutManager = GridLayoutManager(context, 2)
         recycler.adapter = adapter
     }
 
@@ -36,6 +37,21 @@ class FragmentMoviesList : Fragment() {
     private fun loadMovies() {
         adapter.bindMovies(MoviesDataSource().getMovies())
         adapter.notifyDataSetChanged()
+    }
+
+    private val clickListener = object : OnItemClickListener {
+        override fun onClick() {
+            doOnClick()
+        }
+    }
+
+    private fun doOnClick() {
+        view?.findViewById<ImageView>(R.id.back_img_movie_list)?.apply {
+            parentFragmentManager.beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.fragment_container, FragmentMoviesDetails.newInstance())
+                .commit()
+        }
     }
 
     companion object {

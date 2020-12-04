@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aids61517.easyratingview.EasyRatingView
 import com.gmail.mxwild.newhabit.model.Movie
 
-class MoviesAdaptor : RecyclerView.Adapter<MoviesAdaptor.ViewHolder>() {
+class MoviesAdaptor(private val listener: OnItemClickListener) :
+    RecyclerView.Adapter<MoviesAdaptor.ViewHolder>() {
 
     private var movies: List<Movie> = listOf()
 
@@ -22,7 +23,7 @@ class MoviesAdaptor : RecyclerView.Adapter<MoviesAdaptor.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.onBind(movies[position])
+        holder.onBind(movies[position], listener)
     }
 
     override fun getItemCount(): Int = movies.size
@@ -42,7 +43,7 @@ class MoviesAdaptor : RecyclerView.Adapter<MoviesAdaptor.ViewHolder>() {
         private val length = item.findViewById<TextView>(R.id.movie_length_list)
         private val imgCover = item.findViewById<ImageView>(R.id.back_img_movie_list)
 
-        fun onBind(movie: Movie) {
+        fun onBind(movie: Movie, listener: OnItemClickListener) {
             name.text = movie.name
             age.text = context.getString(R.string.pg, movie.age)
             category.text = movie.category
@@ -50,9 +51,17 @@ class MoviesAdaptor : RecyclerView.Adapter<MoviesAdaptor.ViewHolder>() {
             countOfReviews.text = context.getString(R.string.count_reviews, movie.countOfReviews)
             length.text = context.getString(R.string.movie_length, movie.length)
             imgCover.setImageResource(movie.imageCover)
+
+            itemView.setOnClickListener {
+                listener.onClick()
+            }
         }
     }
 }
 
 private val RecyclerView.ViewHolder.context
     get() = this.itemView.context
+
+interface OnItemClickListener {
+    fun onClick()
+}
