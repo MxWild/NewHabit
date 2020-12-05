@@ -26,7 +26,6 @@ class FragmentMoviesList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recycler: RecyclerView = view.findViewById(R.id.movie_list)
         adapter = MoviesAdaptor(clickListener)
-//        recycler.layoutManager = GridLayoutManager(context, 2)
         recycler.adapter = adapter
     }
 
@@ -37,7 +36,6 @@ class FragmentMoviesList : Fragment() {
 
     private fun loadMovies() {
         adapter.bindMovies(MockMoviesData().getMovies())
-        adapter.notifyDataSetChanged()
     }
 
     private val clickListener = object : OnItemClickListener {

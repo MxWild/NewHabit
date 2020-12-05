@@ -13,7 +13,8 @@ class MockMoviesData {
                 4F,
                 125,
                 137,
-                R.drawable.img_avengers_end_game
+                R.drawable.img_avengers_end_game,
+                MockActorData().getActors()
             ),
             Movie(
                 "Tenet",
@@ -22,7 +23,8 @@ class MockMoviesData {
                 5F,
                 98,
                 97,
-                R.drawable.img_tenet
+                R.drawable.img_tenet,
+                listOf()
             ),
             Movie(
                 "Black Widow",
@@ -31,7 +33,8 @@ class MockMoviesData {
                 4F,
                 38,
                 102,
-                R.drawable.img_black_widow
+                R.drawable.img_black_widow,
+                listOf()
             ),
             Movie(
                 "Wonder Woman 1984",
@@ -40,7 +43,8 @@ class MockMoviesData {
                 5F,
                 74,
                 102,
-                R.drawable.img_wonder_woman
+                R.drawable.img_wonder_woman,
+                listOf()
             )
         )
     }

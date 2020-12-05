@@ -41,7 +41,6 @@ class FragmentMoviesDetails : Fragment() {
 
     private fun loadActors() {
         adapter.bindActors(MockActorData().getActors())
-        adapter.notifyDataSetChanged()
     }
 
     companion object {

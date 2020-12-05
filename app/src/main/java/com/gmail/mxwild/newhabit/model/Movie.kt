@@ -7,5 +7,6 @@ data class Movie(
     val rating: Float,
     val countOfReviews: Int,
     val length: Int,
-    val imageCover: Int
+    val imageCover: Int,
+    val actors: List<Actor>
 )
