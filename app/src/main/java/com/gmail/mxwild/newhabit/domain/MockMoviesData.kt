@@ -24,7 +24,7 @@ class MockMoviesData {
                 98,
                 97,
                 R.drawable.img_tenet,
-                listOf()
+                emptyList()
             ),
             Movie(
                 "Black Widow",
@@ -34,7 +34,7 @@ class MockMoviesData {
                 38,
                 102,
                 R.drawable.img_black_widow,
-                listOf()
+                emptyList()
             ),
             Movie(
                 "Wonder Woman 1984",
@@ -44,7 +44,7 @@ class MockMoviesData {
                 74,
                 102,
                 R.drawable.img_wonder_woman,
-                listOf()
+                emptyList()
             )
         )
     }

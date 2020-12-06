@@ -1,5 +1,6 @@
 package com.gmail.mxwild.newhabit.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ class MoviesAdaptor(private val listener: OnItemClickListener) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        Log.d("MoviesAdapter", "onBindViewHolder for position := $position")
         holder.onBind(movies[position], listener)
     }
 
