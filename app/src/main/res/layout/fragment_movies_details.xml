@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
             android:id="@+id/top_background"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/background_image"
+            android:contentDescription="@null"
             android:scaleType="fitStart"
             android:src="@drawable/background_movies_detail"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
-            android:contentDescription="@string/back_to_movies"
+            android:contentDescription="@null"
             android:fontFamily="@font/roboto"
             android:gravity="start"
             android:text="@string/back_narrow"
@@ -157,89 +158,20 @@
             app:layout_constraintStart_toEndOf="@id/guideVerticalLeft"
             app:layout_constraintTop_toBottomOf="@id/movie_description" />
 
-        <ImageView
-            android:id="@+id/actor1"
-            android:layout_width="@dimen/margin_8x10"
-            android:layout_height="@dimen/margin_8x10"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/actor_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/margin_2x4"
-            android:contentDescription="@string/actor1"
-            android:src="@drawable/rdm1"
-            app:layout_constraintEnd_toStartOf="@+id/actor2"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toEndOf="@id/guideVerticalLeft"
-            app:layout_constraintTop_toBottomOf="@id/cast_text" />
-
-        <TextView
-            android:id="@+id/actor1_name"
-            style="@style/white_14sp"
-            android:layout_width="@dimen/margin_8x10"
-            android:layout_height="wrap_content"
-            android:text="@string/actor1"
-            app:layout_constraintStart_toStartOf="@+id/actor1"
-            app:layout_constraintTop_toBottomOf="@id/actor1" />
-
-        <ImageView
-            android:id="@+id/actor2"
-            android:layout_width="@dimen/margin_8x10"
-            android:layout_height="@dimen/margin_8x10"
-            android:layout_marginTop="@dimen/margin_2x4"
-            android:contentDescription="@string/actor2"
-            android:src="@drawable/ce1"
-            app:layout_constraintEnd_toStartOf="@+id/actor3"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toEndOf="@+id/actor1"
-            app:layout_constraintTop_toBottomOf="@id/cast_text" />
-
-        <TextView
-            android:id="@+id/actor2_name"
-            style="@style/white_14sp"
-            android:layout_width="@dimen/margin_8x10"
-            android:layout_height="wrap_content"
-            android:text="@string/actor2"
-            app:layout_constraintStart_toStartOf="@+id/actor2"
-            app:layout_constraintTop_toBottomOf="@id/actor2" />
-
-        <ImageView
-            android:id="@+id/actor3"
-            android:layout_width="@dimen/margin_8x10"
-            android:layout_height="@dimen/margin_8x10"
-            android:layout_marginTop="@dimen/margin_2x4"
-            android:contentDescription="@string/actor3"
-            android:src="@drawable/mr1"
-            app:layout_constraintEnd_toStartOf="@+id/actor4"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toEndOf="@+id/actor2"
-            app:layout_constraintTop_toBottomOf="@id/cast_text" />
-
-        <TextView
-            android:id="@+id/actor3_name"
-            style="@style/white_14sp"
-            android:layout_width="@dimen/margin_8x10"
-            android:layout_height="wrap_content"
-            android:text="@string/actor3"
-            app:layout_constraintStart_toStartOf="@+id/actor3"
-            app:layout_constraintTop_toBottomOf="@id/actor3" />
-
-        <ImageView
-            android:id="@+id/actor4"
-            android:layout_width="@dimen/margin_8x10"
-            android:layout_height="@dimen/margin_8x10"
-            android:layout_marginTop="@dimen/margin_2x4"
-            android:contentDescription="@string/actor4"
-            android:src="@drawable/kh1"
-            app:layout_constraintEnd_toStartOf="@id/guideVerticalRight"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toEndOf="@+id/actor3"
-            app:layout_constraintTop_toBottomOf="@id/cast_text" />
-
-        <TextView
-            android:id="@+id/actor4_name"
-            style="@style/white_14sp"
-            android:layout_width="@dimen/margin_8x10"
-            android:layout_height="wrap_content"
-            android:text="@string/actor4"
-            app:layout_constraintStart_toStartOf="@+id/actor4"
-            app:layout_constraintTop_toBottomOf="@id/actor4" />
+            android:layout_marginStart="@dimen/margin_2x8"
+            android:layout_marginEnd="@dimen/margin_2x8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cast_text"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/view_holder_actor"
+            tools:itemCount="4"
+            android:orientation="horizontal"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

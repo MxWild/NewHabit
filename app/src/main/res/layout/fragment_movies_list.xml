@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background">
+    android:background="@drawable/background">
 
     <TextView
-        android:id="@+id/movies_list"
+        android:id="@+id/header_movies_list"
         style="@style/white_14sp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_44"
@@ -20,115 +21,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/view_movie_list"
-        android:layout_width="@dimen/view_width"
-        android:layout_height="@dimen/view_height"
-        android:layout_marginStart="@dimen/margin_3x4"
-        android:layout_marginTop="@dimen/margin_2x8"
-        android:background="@drawable/rectangle_shape"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/movie_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_4x4"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/movies_list" />
-
-    <ImageView
-        android:id="@+id/back_img_movie_list"
-        android:layout_width="@dimen/preview_width"
-        android:layout_height="@dimen/preview_height"
-        android:layout_margin="@dimen/margin_2x"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/movie_poster_description"
-        android:foreground="@drawable/rectangle_shape"
-        android:scaleType="centerCrop"
-        android:src="@drawable/img_avengers_end_game"
-        app:layout_constraintStart_toStartOf="@id/view_movie_list"
-        app:layout_constraintTop_toTopOf="@id/view_movie_list" />
-
-    <ImageView
-        android:id="@+id/pg_background_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_2x3"
-        android:layout_marginTop="@dimen/margin_2x4"
-        android:background="@drawable/pg_rectangle"
-        android:contentDescription="@string/pg_background_description"
-        app:layout_constraintStart_toStartOf="@id/back_img_movie_list"
-        app:layout_constraintTop_toTopOf="@id/back_img_movie_list" />
-
-    <TextView
-        android:id="@+id/pg_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_2x2"
-        android:layout_marginBottom="@dimen/margin_2x2"
-        android:text="@string/pg"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/pg_background_list"
-        app:layout_constraintStart_toStartOf="@id/pg_background_list"
-        app:layout_constraintTop_toTopOf="@id/pg_background_list" />
-
-    <TextView
-        android:id="@+id/movie_category_list"
-        style="@style/red_8sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_3x4"
-        android:layout_marginTop="@dimen/margin_214"
-        android:text="@string/category"
-        app:layout_constraintStart_toStartOf="@id/view_movie_list"
-        app:layout_constraintTop_toTopOf="@id/view_movie_list" />
-
-    <com.aids61517.easyratingview.EasyRatingView
-        android:id="@+id/movie_rating_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_3x4"
-        android:layout_marginTop="@dimen/margin_2x2"
-        app:emptyDrawable="@drawable/empty_star_8sp"
-        app:fullDrawable="@drawable/fill_star_8sp"
-        app:layout_constraintStart_toStartOf="@id/view_movie_list"
-        app:layout_constraintTop_toBottomOf="@id/movie_category_list"
-        app:numStars="5"
-        app:rating="4"
-        app:spacing="@dimen/spacing_2x"
-        app:step="0.5" />
-
-    <TextView
-        android:id="@+id/count_reviewers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/padding_2x3"
-        android:paddingEnd="@dimen/padding_2x3"
-        android:text="@string/count_reviews"
-        android:textAllCaps="true"
-        android:textColor="#6D6D80"
-        android:textSize="8sp"
-        app:layout_constraintBottom_toBottomOf="@+id/movie_rating_bar"
-        app:layout_constraintStart_toEndOf="@id/movie_rating_bar"
-        app:layout_constraintTop_toTopOf="@+id/movie_rating_bar" />
-
-    <TextView
-        android:id="@+id/name_list"
-        style="@style/white_14sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_3x4"
-        android:layout_marginTop="@dimen/margin_2x4"
-        android:layout_marginEnd="@dimen/margin_3x4"
-        android:text="@string/movie_title"
-        app:layout_constraintBottom_toTopOf="@id/movie_length_list"
-        app:layout_constraintStart_toStartOf="@id/view_movie_list"
-        app:layout_constraintTop_toBottomOf="@id/back_img_movie_list" />
-
-    <TextView
-        android:id="@+id/movie_length_list"
-        style="@style/grey_8sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_3x4"
-        android:text="@string/movie_length"
-        android:textAllCaps="true"
-        app:layout_constraintStart_toStartOf="@id/view_movie_list"
-        app:layout_constraintTop_toBottomOf="@id/name_list" />
+        app:layout_constraintTop_toBottomOf="@id/header_movies_list"
+        tools:listitem="@layout/view_holder_movie"
+        tools:itemCount="4"
+        app:spanCount="2"
+        tools:spanCount="2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
