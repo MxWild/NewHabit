@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:background="@color/black"
+    tools:background="@color/background_color"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <View
@@ -11,9 +11,13 @@
         android:layout_width="@dimen/view_width"
         android:layout_height="@dimen/view_height"
         android:layout_marginStart="@dimen/margin_3x4"
+        android:layout_marginEnd="@dimen/margin_3x4"
         android:layout_marginTop="@dimen/margin_2x8"
+        android:layout_marginBottom="@dimen/margin_2x8"
         android:background="@drawable/rectangle_shape"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -39,6 +43,17 @@
         android:contentDescription="@null"
         app:layout_constraintStart_toStartOf="@id/poster_img_movie_list"
         app:layout_constraintTop_toTopOf="@id/poster_img_movie_list" />
+
+    <ImageView
+        android:id="@+id/favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_2x3"
+        android:layout_marginEnd="@dimen/margin_2x4"
+        app:layout_constraintEnd_toEndOf="@id/view_movie_list"
+        app:layout_constraintTop_toTopOf="@id/pg_background_list"
+        android:background="@drawable/white_favorite"
+        android:contentDescription="@null" />
 
     <TextView
         android:id="@+id/minimum_age_list"
