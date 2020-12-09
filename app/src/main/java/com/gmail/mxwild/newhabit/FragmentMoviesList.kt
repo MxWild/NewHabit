@@ -44,18 +44,14 @@ class FragmentMoviesList : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             context?.let { loadMovies(it) }?.let {
-                adapter.bindMovies(
-                    it
-                )
+                adapter.bindMovies(it)
             }
         }
 
         //TODO оставил временно, для выбора что лучше
         /*scope.launch {
             context?.let { loadMovies(it) }?.let {
-                adapter.bindMovies(
-                    it
-                )
+                adapter.bindMovies(it)
             }
         }*/
     }

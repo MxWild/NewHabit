@@ -35,7 +35,7 @@ class FragmentMoviesDetails : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        movie = arguments?.getParcelable<Movie>(MOVIE_OBJECT)
+        movie = arguments?.getParcelable(MOVIE_OBJECT)
         loadMovieDetail(movie)
 
         val recycler: RecyclerView = view.findViewById(R.id.actor_list)
