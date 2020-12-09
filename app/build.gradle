@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-parcelize'
     id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
@@ -57,6 +58,9 @@ dependencies {
     // Add serialization and coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'
+
+    // Add Coil - image loading library
+    implementation 'io.coil-kt:coil:1.1.0'
 
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
