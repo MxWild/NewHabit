@@ -7,6 +7,12 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="white_12sp">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">#ECECEC</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
     <style name="gray_14sp">
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textColor">#565665</item>
