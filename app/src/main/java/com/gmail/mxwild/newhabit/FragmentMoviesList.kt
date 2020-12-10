@@ -43,7 +43,8 @@ class FragmentMoviesList : Fragment() {
     private fun loadMovies() {
 
         viewLifecycleOwner.lifecycleScope.launch {
-            context?.let { loadMovies(it) }?.let {
+            val context = context
+            (if (context != null) loadMovies(context) else null)?.let {
                 adapter.bindMovies(it)
             }
         }

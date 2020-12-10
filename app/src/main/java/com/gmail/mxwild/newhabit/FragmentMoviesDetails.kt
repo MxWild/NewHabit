@@ -36,31 +36,30 @@ class FragmentMoviesDetails : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         movie = arguments?.getParcelable(MOVIE_OBJECT)
-        loadMovieDetail(movie)
+        bindMovieDetail(movie)
 
         val recycler: RecyclerView = view.findViewById(R.id.actor_list)
         adapter = ActorAdapter()
         recycler.adapter = adapter
     }
 
-    private fun loadMovieDetail(movie: Movie?) {
+    private fun bindMovieDetail(movie: Movie?) {
         Log.d("Load movie detail := ", "$movie")
 
-        if (movie != null) {
+        if (movie != null && view != null) {
             view?.findViewById<ImageView>(R.id.top_background)?.load(movie.backdrop)
             view?.findViewById<TextView>(R.id.minimum_age_list)?.text =
-                context?.getString(R.string.minimum_age, movie.minimumAge)
+                getString(R.string.minimum_age, movie.minimumAge)
             view?.findViewById<TextView>(R.id.title_movie_list)?.text = movie.title
             view?.findViewById<TextView>(R.id.movie_category)?.text =
                 movie.genres.joinToString(separator = ", ") { genre -> genre.name }
             view?.findViewById<EasyRatingView>(R.id.movies_rating_bar)?.rating =
                 movie.ratings * 5 / 10
             view?.findViewById<TextView>(R.id.count_reviewers)?.text =
-                context?.getString(R.string.count_reviews, movie.numberOfRatings)
+                getString(R.string.count_reviews, movie.numberOfRatings)
             view?.findViewById<TextView>(R.id.movie_description)?.text = movie.overview
         } else {
             Toast.makeText(context, "Data coming soon", Toast.LENGTH_SHORT).show()
-            return
         }
     }
 
