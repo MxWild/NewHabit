@@ -8,7 +8,6 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.mxwild.newhabit.FragmentMoviesDetails.Companion.MOVIE_OBJECT
 import com.gmail.mxwild.newhabit.adapter.MoviesAdaptor
 import com.gmail.mxwild.newhabit.adapter.OnItemClickListener
 import com.gmail.mxwild.newhabit.data.Movie
@@ -43,9 +42,10 @@ class FragmentMoviesList : Fragment() {
     private fun loadMovies() {
 
         viewLifecycleOwner.lifecycleScope.launch {
-            val context = context
-            (if (context != null) loadMovies(context) else null)?.let {
-                adapter.bindMovies(it)
+            val contextValue = context
+            if (contextValue != null) {
+                val movies = loadMovies(contextValue)
+                adapter.bindMovies(movies)
             }
         }
 
@@ -64,11 +64,7 @@ class FragmentMoviesList : Fragment() {
     }
 
     private fun doOnClick(movie: Movie) {
-        val bundle = Bundle()
-        bundle.putParcelable(MOVIE_OBJECT, movie)
-
-        val movieDetails = FragmentMoviesDetails.newInstance()
-        movieDetails.arguments = bundle
+        val movieDetails = FragmentMoviesDetails.newInstance(movie)
 
         view?.findViewById<ImageView>(R.id.poster_img_movie_list)?.apply {
             parentFragmentManager.beginTransaction()

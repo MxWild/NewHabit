@@ -41,31 +41,30 @@ class FragmentMoviesDetails : Fragment() {
         val recycler: RecyclerView = view.findViewById(R.id.actor_list)
         adapter = ActorAdapter()
         recycler.adapter = adapter
+        loadActors()
     }
 
     private fun bindMovieDetail(movie: Movie?) {
         Log.d("Load movie detail := ", "$movie")
 
-        if (movie != null && view != null) {
-            view?.findViewById<ImageView>(R.id.top_background)?.load(movie.backdrop)
-            view?.findViewById<TextView>(R.id.minimum_age_list)?.text =
+        val viewValue = view
+
+        if (movie != null && viewValue != null) {
+
+            viewValue.findViewById<ImageView>(R.id.top_background).load(movie.backdrop)
+            viewValue.findViewById<TextView>(R.id.minimum_age_list).text =
                 getString(R.string.minimum_age, movie.minimumAge)
-            view?.findViewById<TextView>(R.id.title_movie_list)?.text = movie.title
-            view?.findViewById<TextView>(R.id.movie_category)?.text =
+            viewValue.findViewById<TextView>(R.id.title_movie_list).text = movie.title
+            viewValue.findViewById<TextView>(R.id.movie_category).text =
                 movie.genres.joinToString(separator = ", ") { genre -> genre.name }
-            view?.findViewById<EasyRatingView>(R.id.movies_rating_bar)?.rating =
+            viewValue.findViewById<EasyRatingView>(R.id.movies_rating_bar).rating =
                 movie.ratings * 5 / 10
-            view?.findViewById<TextView>(R.id.count_reviewers)?.text =
+            viewValue.findViewById<TextView>(R.id.count_reviewers).text =
                 getString(R.string.count_reviews, movie.numberOfRatings)
-            view?.findViewById<TextView>(R.id.movie_description)?.text = movie.overview
+            viewValue.findViewById<TextView>(R.id.movie_description).text = movie.overview
         } else {
             Toast.makeText(context, "Data coming soon", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        loadActors()
     }
 
     private fun loadActors() {
@@ -73,7 +72,14 @@ class FragmentMoviesDetails : Fragment() {
     }
 
     companion object {
-        fun newInstance() = FragmentMoviesDetails()
         const val MOVIE_OBJECT = "movie"
+
+        fun newInstance(movie: Movie): FragmentMoviesDetails {
+            return FragmentMoviesDetails().apply {
+                arguments = Bundle().apply {
+                    putParcelable(MOVIE_OBJECT, movie)
+                }
+            }
+        }
     }
 }
