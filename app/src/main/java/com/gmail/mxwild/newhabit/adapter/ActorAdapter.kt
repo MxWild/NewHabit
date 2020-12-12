@@ -6,12 +6,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.gmail.mxwild.newhabit.R
-import com.gmail.mxwild.newhabit.model.Actor
+import com.gmail.mxwild.newhabit.data.Actor
 
 class ActorAdapter : RecyclerView.Adapter<ActorAdapter.ViewHolder>() {
 
-    private var actors: List<Actor> = listOf()
+    private var actors: List<Actor> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -37,8 +38,8 @@ class ActorAdapter : RecyclerView.Adapter<ActorAdapter.ViewHolder>() {
         private val avatar = item.findViewById<ImageView>(R.id.actor)
 
         fun onBind(actor: Actor) {
-            fullName.text = actor.fullName
-            avatar.setImageResource(actor.avatar)
+            fullName.text = actor.name
+            avatar.load(actor.picture)
         }
     }
 }

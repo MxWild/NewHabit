@@ -5,7 +5,7 @@
     <string name="back_to_movies">Back to movies</string>
     <string name="background_image">background image</string>
 
-    <string name="pg" translatable="false">%d+</string>
+    <string name="minimum_age" translatable="false">%d+</string>
 
     <string name="movie_title" translatable="false">Avengers: End Game</string>
     <string name="storyline">Storyline</string>

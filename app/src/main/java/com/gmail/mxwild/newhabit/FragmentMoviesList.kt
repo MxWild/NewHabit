@@ -6,14 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.mxwild.newhabit.adapter.MoviesAdaptor
 import com.gmail.mxwild.newhabit.adapter.OnItemClickListener
-import com.gmail.mxwild.newhabit.domain.MockMoviesData
+import com.gmail.mxwild.newhabit.data.Movie
+import com.gmail.mxwild.newhabit.data.loadMovies
+import kotlinx.coroutines.launch
 
 class FragmentMoviesList : Fragment() {
 
     private lateinit var adapter: MoviesAdaptor
+    //TODO оставил временно, для выбора что лучше
+//    private val scope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,20 +40,36 @@ class FragmentMoviesList : Fragment() {
     }
 
     private fun loadMovies() {
-        adapter.bindMovies(MockMoviesData().getMovies())
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            val contextValue = context
+            if (contextValue != null) {
+                val movies = loadMovies(contextValue)
+                adapter.bindMovies(movies)
+            }
+        }
+
+        //TODO оставил временно, для выбора что лучше
+        /*scope.launch {
+            context?.let { loadMovies(it) }?.let {
+                adapter.bindMovies(it)
+            }
+        }*/
     }
 
     private val clickListener = object : OnItemClickListener {
-        override fun onClick() {
-            doOnClick()
+        override fun onClick(movie: Movie) {
+            doOnClick(movie)
         }
     }
 
-    private fun doOnClick() {
-        view?.findViewById<ImageView>(R.id.back_img_movie_list)?.apply {
+    private fun doOnClick(movie: Movie) {
+        val movieDetails = FragmentMoviesDetails.newInstance(movie)
+
+        view?.findViewById<ImageView>(R.id.poster_img_movie_list)?.apply {
             parentFragmentManager.beginTransaction()
                 .addToBackStack(null)
-                .replace(R.id.fragment_container, FragmentMoviesDetails.newInstance())
+                .replace(R.id.fragment_container, movieDetails)
                 .commit()
         }
     }

@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.aids61517.easyratingview.EasyRatingView
 import com.gmail.mxwild.newhabit.R
-import com.gmail.mxwild.newhabit.model.Movie
+import com.gmail.mxwild.newhabit.data.Movie
 
 class MoviesAdaptor(private val listener: OnItemClickListener) :
     RecyclerView.Adapter<MoviesAdaptor.ViewHolder>() {
@@ -38,25 +39,27 @@ class MoviesAdaptor(private val listener: OnItemClickListener) :
 
     inner class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
-        private val name = item.findViewById<TextView>(R.id.name_list)
-        private val age = item.findViewById<TextView>(R.id.pg_list)
+        private val title = item.findViewById<TextView>(R.id.title_movie_list)
+        private val minimumAge = item.findViewById<TextView>(R.id.minimum_age_list)
         private val category = item.findViewById<TextView>(R.id.movie_category_list)
         private val rating = item.findViewById<EasyRatingView>(R.id.movie_rating_bar)
         private val countOfReviews = item.findViewById<TextView>(R.id.count_reviewers)
         private val length = item.findViewById<TextView>(R.id.movie_length_list)
-        private val imgCover = item.findViewById<ImageView>(R.id.back_img_movie_list)
+        private val posterImage = item.findViewById<ImageView>(R.id.poster_img_movie_list)
 
         fun onBind(movie: Movie, listener: OnItemClickListener) {
-            name.text = movie.name
-            age.text = context.getString(R.string.pg, movie.age)
-            category.text = movie.category
-            rating.rating = movie.rating
-            countOfReviews.text = context.getString(R.string.count_reviews, movie.countOfReviews)
-            length.text = context.getString(R.string.movie_length, movie.length)
-            imgCover.setImageResource(movie.imageCover)
+            Log.d("Load Movie ", " :=  $movie")
+            title.text = movie.title
+            minimumAge.text = context.getString(R.string.minimum_age, movie.minimumAge)
+            length.text = context.getString(R.string.movie_length, movie.runtime)
+            category.text = movie.genres.joinToString(separator = ", ") { genre -> genre.name }
+            countOfReviews.text = context.getString(R.string.count_reviews, movie.numberOfRatings)
+            posterImage.load(movie.poster)
+            rating.rating = movie.ratings * 5 / 10
 
             itemView.setOnClickListener {
-                listener.onClick()
+                Log.d("Click on movie: ", "${movie.id}")
+                listener.onClick(movie)
             }
         }
     }
@@ -66,5 +69,5 @@ private val RecyclerView.ViewHolder.context
     get() = this.itemView.context
 
 interface OnItemClickListener {
-    fun onClick()
+    fun onClick(movie: Movie)
 }
