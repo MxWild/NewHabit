@@ -11,4 +11,6 @@
     <color name="text_color">#6D6D80</color>
 
     <color name="background_color">#191926</color>
+    <color name="background_card_color">#222232</color>
+    <color name="stroke_card_color">#636375</color>
 </resources>
