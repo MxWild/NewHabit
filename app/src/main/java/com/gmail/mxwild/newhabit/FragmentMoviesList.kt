@@ -17,8 +17,6 @@ import kotlinx.coroutines.launch
 class FragmentMoviesList : Fragment() {
 
     private lateinit var adapter: MoviesAdaptor
-    //TODO оставил временно, для выбора что лучше
-//    private val scope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,13 +46,6 @@ class FragmentMoviesList : Fragment() {
                 adapter.bindMovies(movies)
             }
         }
-
-        //TODO оставил временно, для выбора что лучше
-        /*scope.launch {
-            context?.let { loadMovies(it) }?.let {
-                adapter.bindMovies(it)
-            }
-        }*/
     }
 
     private val clickListener = object : OnItemClickListener {
