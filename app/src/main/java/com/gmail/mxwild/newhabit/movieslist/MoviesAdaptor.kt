@@ -1,4 +1,4 @@
-package com.gmail.mxwild.newhabit.model.adapter
+package com.gmail.mxwild.newhabit.movieslist
 
 import android.util.Log
 import android.view.LayoutInflater

@@ -5,18 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.mxwild.newhabit.R
-import com.gmail.mxwild.newhabit.model.adapter.MoviesAdaptor
-import com.gmail.mxwild.newhabit.model.adapter.OnItemClickListener
 import com.gmail.mxwild.newhabit.model.data.Movie
-import com.gmail.mxwild.newhabit.model.data.loadMovies
 import com.gmail.mxwild.newhabit.moviedetail.FragmentMovieDetails
-import kotlinx.coroutines.launch
+import com.gmail.mxwild.newhabit.utils.State
 
 class FragmentMoviesList : Fragment() {
+
+    private val viewModel: MoviesListViewModel by viewModels { MoviesListViewModelFactory() }
 
     private lateinit var adapter: MoviesAdaptor
 
@@ -32,22 +33,37 @@ class FragmentMoviesList : Fragment() {
         val recycler: RecyclerView = view.findViewById(R.id.movie_list)
         adapter = MoviesAdaptor(clickListener)
         recycler.adapter = adapter
-    }
 
-    override fun onStart() {
-        super.onStart()
-        loadMovies()
-    }
+        observeMovies()
 
-    private fun loadMovies() {
-
-        viewLifecycleOwner.lifecycleScope.launch {
+        if (viewModel.moviesList.value.isNullOrEmpty()) {
             val contextValue = context
             if (contextValue != null) {
-                val movies = loadMovies(contextValue)
-                adapter.bindMovies(movies)
+                viewModel.loadMoviesList(contextValue)
             }
         }
+    }
+
+    private fun observeMovies() {
+        viewModel.moviesList.observe(viewLifecycleOwner, { movieList ->
+            adapter.bindMovies(movieList)
+        })
+
+        val progressBar = view?.findViewById<ProgressBar>(R.id.progress_bar)
+
+        viewModel.state.observe(viewLifecycleOwner, { status ->
+            when (status) {
+                is State.Init, is State.Success -> {
+                    progressBar!!.isVisible = false
+                }
+                is State.Loading -> {
+                    progressBar!!.isVisible = true
+                }
+                is State.Error -> {
+                    progressBar!!.isVisible = false
+                }
+            }
+        })
     }
 
     private val clickListener = object : OnItemClickListener {

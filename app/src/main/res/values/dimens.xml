@@ -32,4 +32,5 @@
     <dimen name="spacing_2x">2dp</dimen>
 
     <dimen name="size_44">44dp</dimen>
+    <dimen name="padding_progress_bar">128dp</dimen>
 </resources>

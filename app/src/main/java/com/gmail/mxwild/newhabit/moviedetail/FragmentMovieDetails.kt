@@ -45,7 +45,6 @@ class FragmentMovieDetails : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        bindMovieDetail(movie)
 
         val recycler: RecyclerView = view.findViewById(R.id.actor_list)
         adapter = ActorAdapter()
