@@ -1,4 +1,4 @@
-package com.gmail.mxwild.newhabit.adapter
+package com.gmail.mxwild.newhabit.model.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.aids61517.easyratingview.EasyRatingView
 import com.gmail.mxwild.newhabit.R
-import com.gmail.mxwild.newhabit.data.Movie
+import com.gmail.mxwild.newhabit.model.data.Movie
 
 class MoviesAdaptor(private val listener: OnItemClickListener) :
     RecyclerView.Adapter<MoviesAdaptor.ViewHolder>() {

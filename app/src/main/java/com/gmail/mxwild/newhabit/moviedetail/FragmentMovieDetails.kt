@@ -1,4 +1,4 @@
-package com.gmail.mxwild.newhabit
+package com.gmail.mxwild.newhabit.moviedetail
 
 import android.os.Bundle
 import android.util.Log
@@ -8,14 +8,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.aids61517.easyratingview.EasyRatingView
-import com.gmail.mxwild.newhabit.adapter.ActorAdapter
-import com.gmail.mxwild.newhabit.data.Movie
+import com.gmail.mxwild.newhabit.R
+import com.gmail.mxwild.newhabit.model.data.Movie
 
-class FragmentMoviesDetails : Fragment() {
+class FragmentMovieDetails : Fragment() {
+
+    private lateinit var viewModel: MovieDetailsViewModel
 
     private lateinit var adapter: ActorAdapter
     private var movie: Movie? = null
@@ -31,16 +35,29 @@ class FragmentMoviesDetails : Fragment() {
             parentFragmentManager.popBackStack()
         }
 
+        movie = arguments?.getParcelable(MOVIE_OBJECT)
+        val viewModelFactory = MovieDetailsViewModelFactory(movie)
+
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(MovieDetailsViewModel::class.java)
+
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        movie = arguments?.getParcelable(MOVIE_OBJECT)
         bindMovieDetail(movie)
 
         val recycler: RecyclerView = view.findViewById(R.id.actor_list)
         adapter = ActorAdapter()
         recycler.adapter = adapter
+        recycler.hasFixedSize()
+
+        viewModel.selectedMovie.observe(viewLifecycleOwner, {
+            bindMovieDetail(movie)
+        })
+
+        viewModel.setMovie()
+
         loadActors()
     }
 
@@ -62,6 +79,7 @@ class FragmentMoviesDetails : Fragment() {
             viewValue.findViewById<TextView>(R.id.count_reviewers).text =
                 getString(R.string.count_reviews, movie.numberOfRatings)
             viewValue.findViewById<TextView>(R.id.movie_description).text = movie.overview
+            viewValue.findViewById<TextView>(R.id.cast_text).isVisible = movie.actors.isNotEmpty()
         } else {
             Toast.makeText(context, "Data coming soon", Toast.LENGTH_SHORT).show()
         }
@@ -74,8 +92,8 @@ class FragmentMoviesDetails : Fragment() {
     companion object {
         const val MOVIE_OBJECT = "movie"
 
-        fun newInstance(movie: Movie): FragmentMoviesDetails {
-            return FragmentMoviesDetails().apply {
+        fun newInstance(movie: Movie): FragmentMovieDetails {
+            return FragmentMovieDetails().apply {
                 arguments = Bundle().apply {
                     putParcelable(MOVIE_OBJECT, movie)
                 }

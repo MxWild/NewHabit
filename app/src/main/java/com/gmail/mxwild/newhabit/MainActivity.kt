@@ -2,6 +2,7 @@ package com.gmail.mxwild.newhabit
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.gmail.mxwild.newhabit.movieslist.FragmentMoviesList
 
 class MainActivity : AppCompatActivity() {
 

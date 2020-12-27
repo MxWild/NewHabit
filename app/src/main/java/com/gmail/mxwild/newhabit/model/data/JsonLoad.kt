@@ -1,4 +1,4 @@
-package com.gmail.mxwild.newhabit.data
+package com.gmail.mxwild.newhabit.model.data
 
 import android.content.Context
 import kotlinx.coroutines.Dispatchers

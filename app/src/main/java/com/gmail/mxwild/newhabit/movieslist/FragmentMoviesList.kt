@@ -1,4 +1,4 @@
-package com.gmail.mxwild.newhabit
+package com.gmail.mxwild.newhabit.movieslist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,12 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.mxwild.newhabit.adapter.MoviesAdaptor
-import com.gmail.mxwild.newhabit.adapter.OnItemClickListener
-import com.gmail.mxwild.newhabit.data.Movie
-import com.gmail.mxwild.newhabit.data.loadMovies
+import com.gmail.mxwild.newhabit.R
+import com.gmail.mxwild.newhabit.model.adapter.MoviesAdaptor
+import com.gmail.mxwild.newhabit.model.adapter.OnItemClickListener
+import com.gmail.mxwild.newhabit.model.data.Movie
+import com.gmail.mxwild.newhabit.model.data.loadMovies
+import com.gmail.mxwild.newhabit.moviedetail.FragmentMovieDetails
 import kotlinx.coroutines.launch
 
 class FragmentMoviesList : Fragment() {
@@ -55,7 +57,7 @@ class FragmentMoviesList : Fragment() {
     }
 
     private fun doOnClick(movie: Movie) {
-        val movieDetails = FragmentMoviesDetails.newInstance(movie)
+        val movieDetails = FragmentMovieDetails.newInstance(movie)
 
         view?.findViewById<ImageView>(R.id.poster_img_movie_list)?.apply {
             parentFragmentManager.beginTransaction()
