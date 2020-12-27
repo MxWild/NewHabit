@@ -26,7 +26,7 @@
     <dimen name="view_width">170dp</dimen>
     <dimen name="view_height">296dp</dimen>
 
-    <dimen name="preview_width">166dp</dimen>
+    <dimen name="preview_width">168dp</dimen>
     <dimen name="preview_height">248dp</dimen>
 
     <dimen name="spacing_2x">2dp</dimen>
