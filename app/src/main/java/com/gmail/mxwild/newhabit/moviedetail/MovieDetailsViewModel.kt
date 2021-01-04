@@ -5,12 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gmail.mxwild.newhabit.model.data.Movie
 
-class MovieDetailsViewModel(private val movie: Movie) : ViewModel() {
+class MovieDetailsViewModel : ViewModel() {
 
     private val _selectedMovie = MutableLiveData<Movie>()
     val selectedMovie: LiveData<Movie> get() = _selectedMovie
 
-    fun setMovie() {
-        _selectedMovie.value = movie
+    fun loadMovie(movieSelect: Movie) {
+        if (movieSelect != null) {
+            _selectedMovie.value = movieSelect
+        }
     }
 }

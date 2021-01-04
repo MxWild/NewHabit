@@ -36,12 +36,7 @@ class FragmentMoviesList : Fragment() {
 
         observeMovies()
 
-        if (viewModel.moviesList.value.isNullOrEmpty()) {
-            val contextValue = context
-            if (contextValue != null) {
-                viewModel.loadMoviesList(contextValue)
-            }
-        }
+        context?.let { viewModel.loadMoviesList(it) }
     }
 
     private fun observeMovies() {
@@ -54,13 +49,13 @@ class FragmentMoviesList : Fragment() {
         viewModel.state.observe(viewLifecycleOwner, { status ->
             when (status) {
                 is State.Init, is State.Success -> {
-                    progressBar!!.isVisible = false
+                    progressBar?.isVisible = false
                 }
                 is State.Loading -> {
-                    progressBar!!.isVisible = true
+                    progressBar?.isVisible = true
                 }
                 is State.Error -> {
-                    progressBar!!.isVisible = false
+                    progressBar?.isVisible = false
                 }
             }
         })

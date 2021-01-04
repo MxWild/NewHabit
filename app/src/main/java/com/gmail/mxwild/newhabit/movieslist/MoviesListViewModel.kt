@@ -12,9 +12,9 @@ import com.gmail.mxwild.newhabit.utils.State
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class MoviesListViewModel() : ViewModel() {
+class MoviesListViewModel : ViewModel() {
 
-    private val _mutableMovieList = MutableLiveData<List<Movie>>(emptyList())
+    private val _mutableMovieList = MutableLiveData<List<Movie>>()
     val moviesList: LiveData<List<Movie>> get() = _mutableMovieList
 
     private val _state = MutableLiveData<State>(State.Init())
@@ -39,6 +39,6 @@ class MoviesListViewModel() : ViewModel() {
     }
 
     companion object {
-        const val TIME_DELAY: Long = 3_000
+        const val TIME_DELAY: Long = 2_000
     }
 }
