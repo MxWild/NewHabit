@@ -52,7 +52,9 @@ class FragmentMoviesList : Fragment() {
                     progressBar?.isVisible = false
                 }
                 is State.Loading -> {
-                    progressBar?.isVisible = true
+                    if (viewModel.moviesList.value == null) {
+                        progressBar?.isVisible = true
+                    }
                 }
                 is State.Error -> {
                     progressBar?.isVisible = false
