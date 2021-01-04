@@ -11,8 +11,6 @@ class MovieDetailsViewModel : ViewModel() {
     val selectedMovie: LiveData<Movie> get() = _selectedMovie
 
     fun loadMovie(movieSelect: Movie) {
-        if (movieSelect != null) {
-            _selectedMovie.value = movieSelect
-        }
+        _selectedMovie.value = movieSelect
     }
 }
