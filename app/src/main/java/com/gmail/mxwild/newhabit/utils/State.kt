@@ -1,8 +1,7 @@
 package com.gmail.mxwild.newhabit.utils
 
+import com.gmail.mxwild.newhabit.model.data.Movie
+
 sealed class State {
-    class Init : State()
-    class Loading : State()
-    class Error : State()
-    class Success : State()
+    class Success(val moviesList: List<Movie>) : State()
 }

@@ -17,19 +17,19 @@ class MoviesListViewModel : ViewModel() {
     private val _mutableMovieList = MutableLiveData<List<Movie>>()
     val moviesList: LiveData<List<Movie>> get() = _mutableMovieList
 
-    private val _state = MutableLiveData<State>(State.Init())
+    private val _state = MutableLiveData<State>()
     val state: LiveData<State> get() = _state
 
     fun loadMoviesList(context: Context) {
         viewModelScope.launch {
             try {
-                _state.value = State.Loading()
+//                _state.value = State.Loading()
                 delay(TIME_DELAY)
                 val movies = loadMovies(context)
                 _mutableMovieList.value = movies
-                _state.value = State.Success()
+                _state.value = State.Success(movies)
             } catch (e: Exception) {
-                _state.value = State.Error()
+//                _state.value = State.Error()
                 Log.e(
                     MoviesListViewModel::class.java.simpleName,
                     "Error load movies data ${e.message}"

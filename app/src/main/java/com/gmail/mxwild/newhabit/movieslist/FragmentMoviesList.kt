@@ -46,17 +46,13 @@ class FragmentMoviesList : Fragment() {
 
         val progressBar = view?.findViewById<ProgressBar>(R.id.progress_bar)
 
+        if (progressBar != null) {
+            progressBar.isVisible = true
+        }
+
         viewModel.state.observe(viewLifecycleOwner, { status ->
             when (status) {
-                is State.Init, is State.Success -> {
-                    progressBar?.isVisible = false
-                }
-                is State.Loading -> {
-                    if (viewModel.moviesList.value == null) {
-                        progressBar?.isVisible = true
-                    }
-                }
-                is State.Error -> {
+                is State.Success -> {
                     progressBar?.isVisible = false
                 }
             }

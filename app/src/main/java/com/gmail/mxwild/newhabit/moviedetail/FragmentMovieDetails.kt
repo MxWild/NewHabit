@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.aids61517.easyratingview.EasyRatingView
@@ -16,8 +15,6 @@ import com.gmail.mxwild.newhabit.R
 import com.gmail.mxwild.newhabit.model.data.Movie
 
 class FragmentMovieDetails : Fragment() {
-
-    private val movieDetailsViewModel: MovieDetailsViewModel by viewModels { MovieDetailsViewModelFactory() }
 
     private var actorRecycler: RecyclerView? = null
     private var adapter: ActorAdapter = ActorAdapter()
@@ -41,6 +38,13 @@ class FragmentMovieDetails : Fragment() {
             parentFragmentManager.popBackStack()
         }
 
+        movie?.let { viewMovieDetail(it, view) }
+
+        return view
+    }
+
+    private fun viewMovieDetail(movie: Movie, view: View) {
+
         val topBackground = view.findViewById<ImageView>(R.id.top_background)
         val minimumAge = view.findViewById<TextView>(R.id.minimum_age_list)
         val titleMovieList = view.findViewById<TextView>(R.id.title_movie_list)
@@ -51,24 +55,19 @@ class FragmentMovieDetails : Fragment() {
         val castText = view.findViewById<TextView>(R.id.cast_text)
         actorRecycler = view.findViewById(R.id.actor_list)
 
-        movie?.let { movieDetailsViewModel.loadMovie(it) }
-
-        movieDetailsViewModel.selectedMovie.observe(this.viewLifecycleOwner) { movie ->
-            topBackground.load(movie.backdrop) {
-                crossfade(true)
-            }
-            minimumAge.text = getString(R.string.minimum_age, movie.minimumAge)
-            titleMovieList.text = movie.title
-            movieCategory.text = movie.genres.joinToString(separator = ", ") { genre -> genre.name }
-            moviesRatingBar.rating = movie.ratings * 5 / 10
-            countReviewers.text = getString(R.string.count_reviews, movie.numberOfRatings)
-            movieDescription.text = movie.overview
-            castText.isVisible = movie.actors.isNotEmpty()
-            loadActors()
+        topBackground.load(movie.backdrop) {
+            crossfade(true)
         }
-
-        return view
+        minimumAge.text = getString(R.string.minimum_age, movie.minimumAge)
+        titleMovieList.text = movie.title
+        movieCategory.text = movie.genres.joinToString(separator = ", ") { genre -> genre.name }
+        moviesRatingBar.rating = movie.ratings * 5 / 10
+        countReviewers.text = getString(R.string.count_reviews, movie.numberOfRatings)
+        movieDescription.text = movie.overview
+        castText.isVisible = movie.actors.isNotEmpty()
+        loadActors()
     }
+
 
     override fun onDetach() {
         super.onDetach()
