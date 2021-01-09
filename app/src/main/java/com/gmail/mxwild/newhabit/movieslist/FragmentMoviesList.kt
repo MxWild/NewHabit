@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gmail.mxwild.newhabit.R
 import com.gmail.mxwild.newhabit.model.data.Movie
 import com.gmail.mxwild.newhabit.moviedetail.FragmentMovieDetails
-import com.gmail.mxwild.newhabit.utils.State
 
 class FragmentMoviesList : Fragment() {
 
@@ -40,9 +39,6 @@ class FragmentMoviesList : Fragment() {
     }
 
     private fun observeMovies() {
-        viewModel.moviesList.observe(viewLifecycleOwner, { movieList ->
-            adapter.bindMovies(movieList)
-        })
 
         val progressBar = view?.findViewById<ProgressBar>(R.id.progress_bar)
 
@@ -50,12 +46,9 @@ class FragmentMoviesList : Fragment() {
             progressBar.isVisible = true
         }
 
-        viewModel.state.observe(viewLifecycleOwner, { status ->
-            when (status) {
-                is State.Success -> {
-                    progressBar?.isVisible = false
-                }
-            }
+        viewModel.moviesList.observe(viewLifecycleOwner, { movieList ->
+            adapter.bindMovies(movieList)
+            progressBar?.isVisible = false
         })
     }
 
