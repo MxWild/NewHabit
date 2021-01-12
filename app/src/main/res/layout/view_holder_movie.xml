@@ -5,12 +5,15 @@
     android:id="@+id/card_view"
     android:layout_width="@dimen/view_width"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="@dimen/margin_2x8"
+    android:layout_marginStart="@dimen/margin_2x4"
+    android:layout_marginEnd="@dimen/margin_2x4"
     android:layout_marginBottom="@dimen/margin_2x8"
+    android:padding="@dimen/padding_2x4"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp"
+    app:strokeColor="@color/stroke_card_color"
+    app:strokeWidth="1dp"
     app:cardPreventCornerOverlap="false"
-    android:padding="@dimen/padding_2x4"
     tools:background="@color/background_color">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,31 +21,18 @@
         android:layout_height="match_parent"
         android:background="@color/background_color">
 
-        <View
-            android:id="@+id/view_movie_list"
-            android:layout_width="@dimen/view_width"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/margin_3x4"
-            android:layout_marginEnd="@dimen/margin_3x4"
-            android:background="@drawable/rectangle_shape"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ImageView
             android:id="@+id/poster_img_movie_list"
             android:layout_width="@dimen/preview_width"
             android:layout_height="@dimen/preview_height"
             android:layout_marginStart="@dimen/margin_2x2"
-            android:layout_marginTop="@dimen/margin_2x"
-            android:layout_marginEnd="@dimen/margin_2x2"
+            android:layout_margin="@dimen/margin_2x"
             android:adjustViewBounds="true"
             android:contentDescription="@null"
             android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="@id/view_movie_list"
-            app:layout_constraintStart_toStartOf="@id/view_movie_list"
-            app:layout_constraintTop_toTopOf="@id/view_movie_list"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/img_avengers_end_game" />
 
         <View
@@ -73,7 +63,7 @@
             android:layout_marginEnd="@dimen/margin_2x4"
             android:background="@drawable/white_favorite"
             android:contentDescription="@null"
-            app:layout_constraintEnd_toEndOf="@id/view_movie_list"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/pg_background_list" />
 
         <TextView
@@ -92,13 +82,16 @@
         <TextView
             android:id="@+id/movie_category_list"
             style="@style/red_8sp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_3x4"
+            android:layout_marginEnd="@dimen/margin_3x4"
             android:layout_marginTop="@dimen/margin_214"
             android:text="@string/category"
-            app:layout_constraintStart_toStartOf="@id/view_movie_list"
-            app:layout_constraintTop_toTopOf="@id/view_movie_list" />
+            android:maxLines="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.aids61517.easyratingview.EasyRatingView
             android:id="@+id/movie_rating_bar"
@@ -108,7 +101,7 @@
             android:layout_marginTop="@dimen/margin_2x2"
             app:emptyDrawable="@drawable/empty_star_8sp"
             app:fullDrawable="@drawable/fill_star_8sp"
-            app:layout_constraintStart_toStartOf="@id/view_movie_list"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/movie_category_list"
             app:numStars="5"
             app:rating="4"
@@ -127,7 +120,7 @@
             android:textColor="#6D6D80"
             android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="@+id/movie_rating_bar"
-            app:layout_constraintEnd_toEndOf="@id/view_movie_list"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/movie_rating_bar"
             app:layout_constraintTop_toTopOf="@+id/movie_rating_bar" />
 
@@ -144,9 +137,9 @@
             android:text="@string/movie_title"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/movie_length_list"
-            app:layout_constraintEnd_toEndOf="@id/view_movie_list"
-            app:layout_constraintStart_toStartOf="@id/view_movie_list"
-            app:layout_constraintTop_toBottomOf="@id/poster_img_movie_list" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movie_rating_bar" />
 
         <TextView
             android:id="@+id/movie_length_list"
@@ -158,8 +151,8 @@
             android:layout_marginBottom="@dimen/margin_2x3"
             android:text="@string/movie_length"
             android:textAllCaps="true"
-            app:layout_constraintBottom_toBottomOf="@id/view_movie_list"
-            app:layout_constraintStart_toStartOf="@id/view_movie_list"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_movie_list" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

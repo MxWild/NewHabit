@@ -1,4 +1,4 @@
-package com.gmail.mxwild.newhabit.adapter
+package com.gmail.mxwild.newhabit.movieslist
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,9 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.aids61517.easyratingview.EasyRatingView
 import com.gmail.mxwild.newhabit.R
-import com.gmail.mxwild.newhabit.data.Movie
+import com.gmail.mxwild.newhabit.model.data.Movie
 
 class MoviesAdaptor(private val listener: OnItemClickListener) :
     RecyclerView.Adapter<MoviesAdaptor.ViewHolder>() {
@@ -54,7 +55,10 @@ class MoviesAdaptor(private val listener: OnItemClickListener) :
             length.text = context.getString(R.string.movie_length, movie.runtime)
             category.text = movie.genres.joinToString(separator = ", ") { genre -> genre.name }
             countOfReviews.text = context.getString(R.string.count_reviews, movie.numberOfRatings)
-            posterImage.load(movie.poster)
+            posterImage.load(movie.poster) {
+                crossfade(true)
+                transformations(RoundedCornersTransformation(10f, 10f, 8f, 8f))
+            }
             rating.rating = movie.ratings * 5 / 10
 
             itemView.setOnClickListener {

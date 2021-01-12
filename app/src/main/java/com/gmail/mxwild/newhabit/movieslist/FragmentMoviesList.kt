@@ -1,20 +1,22 @@
-package com.gmail.mxwild.newhabit
+package com.gmail.mxwild.newhabit.movieslist
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.mxwild.newhabit.adapter.MoviesAdaptor
-import com.gmail.mxwild.newhabit.adapter.OnItemClickListener
-import com.gmail.mxwild.newhabit.data.Movie
-import com.gmail.mxwild.newhabit.data.loadMovies
-import kotlinx.coroutines.launch
+import com.gmail.mxwild.newhabit.R
+import com.gmail.mxwild.newhabit.model.data.Movie
+import com.gmail.mxwild.newhabit.moviedetail.FragmentMovieDetails
 
 class FragmentMoviesList : Fragment() {
+
+    private val viewModel: MoviesListViewModel by viewModels { MoviesListViewModelFactory() }
 
     private lateinit var adapter: MoviesAdaptor
 
@@ -30,22 +32,24 @@ class FragmentMoviesList : Fragment() {
         val recycler: RecyclerView = view.findViewById(R.id.movie_list)
         adapter = MoviesAdaptor(clickListener)
         recycler.adapter = adapter
+
+        observeMovies()
+
+        context?.let { viewModel.loadMoviesList(it) }
     }
 
-    override fun onStart() {
-        super.onStart()
-        loadMovies()
-    }
+    private fun observeMovies() {
 
-    private fun loadMovies() {
+        val progressBar = view?.findViewById<ProgressBar>(R.id.progress_bar)
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            val contextValue = context
-            if (contextValue != null) {
-                val movies = loadMovies(contextValue)
-                adapter.bindMovies(movies)
-            }
+        if (progressBar != null) {
+            progressBar.isVisible = true
         }
+
+        viewModel.moviesList.observe(viewLifecycleOwner, { movieList ->
+            adapter.bindMovies(movieList)
+            progressBar?.isVisible = false
+        })
     }
 
     private val clickListener = object : OnItemClickListener {
@@ -55,7 +59,7 @@ class FragmentMoviesList : Fragment() {
     }
 
     private fun doOnClick(movie: Movie) {
-        val movieDetails = FragmentMoviesDetails.newInstance(movie)
+        val movieDetails = FragmentMovieDetails.newInstance(movie)
 
         view?.findViewById<ImageView>(R.id.poster_img_movie_list)?.apply {
             parentFragmentManager.beginTransaction()

@@ -26,10 +26,11 @@
     <dimen name="view_width">170dp</dimen>
     <dimen name="view_height">296dp</dimen>
 
-    <dimen name="preview_width">166dp</dimen>
+    <dimen name="preview_width">168dp</dimen>
     <dimen name="preview_height">248dp</dimen>
 
     <dimen name="spacing_2x">2dp</dimen>
 
     <dimen name="size_44">44dp</dimen>
+    <dimen name="padding_progress_bar">128dp</dimen>
 </resources>
