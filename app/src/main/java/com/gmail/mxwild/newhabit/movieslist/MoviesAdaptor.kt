@@ -53,7 +53,7 @@ class MoviesAdaptor(private val listener: OnItemClickListener) :
             title.text = movie.title
             minimumAge.text = context.getString(R.string.minimum_age, movie.minimumAge)
             length.text = context.getString(R.string.movie_length, movie.runtime)
-            category.text = movie.genres.joinToString(separator = ", ") { genre -> genre.name }
+            category.text = movie.genres?.joinToString(separator = ", ") { genre -> genre.name }
             countOfReviews.text = context.getString(R.string.count_reviews, movie.numberOfRatings)
             posterImage.load(movie.poster) {
                 crossfade(true)

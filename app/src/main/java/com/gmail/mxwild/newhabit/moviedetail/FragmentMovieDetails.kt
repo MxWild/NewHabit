@@ -60,7 +60,7 @@ class FragmentMovieDetails : Fragment() {
         }
         minimumAge.text = getString(R.string.minimum_age, movie.minimumAge)
         titleMovieList.text = movie.title
-        movieCategory.text = movie.genres.joinToString(separator = ", ") { genre -> genre.name }
+        movieCategory.text = movie.genres?.joinToString(separator = ", ") { genre -> genre.name }
         moviesRatingBar.rating = movie.ratings * 5 / 10
         countReviewers.text = getString(R.string.count_reviews, movie.numberOfRatings)
         movieDescription.text = movie.overview

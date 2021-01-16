@@ -35,7 +35,7 @@ class FragmentMoviesList : Fragment() {
 
         observeMovies()
 
-        context?.let { viewModel.loadMoviesList(it) }
+        viewModel.loadMoviesList()
     }
 
     private fun observeMovies() {
