@@ -10,7 +10,7 @@ import com.gmail.mxwild.newhabit.model.dto.MovieDto
 
 object DtoMapper {
 
-    fun convertMovieFromDto(movieDto: MovieDto, actors: CreditsResponse): Movie {
+    fun convertMovieFromDto(movieDto: MovieDto): Movie {
         return Movie(
             id = movieDto.id,
             title = movieDto.title,
@@ -22,9 +22,7 @@ object DtoMapper {
             minimumAge = if (movieDto.adult) 16 else 13,
             runtime = movieDto.runtime,
             genres = movieDto.genres?.map { convertGenreFromDto(it) },
-            actors = actors.cast
-                .filter { it.profileImg != null }
-                .map { convertActorFromDto(it) }
+            actors = emptyList()
         )
     }
 
@@ -34,7 +32,7 @@ object DtoMapper {
     )
 
 
-    private fun convertActorFromDto(actorDto: ActorDto): Actor {
+    fun convertActorFromDto(actorDto: ActorDto): Actor {
         return Actor(
             id = actorDto.id,
             name = actorDto.name,

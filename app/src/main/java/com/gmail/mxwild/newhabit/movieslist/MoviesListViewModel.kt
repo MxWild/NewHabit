@@ -18,9 +18,6 @@ class MoviesListViewModel : ViewModel() {
     fun loadMoviesList() {
         viewModelScope.launch {
             try {
-                //TODO оставил пока комментарий, для того чтобы потом можно было применить
-/*                val movies = loadMovies(context)
-                _mutableMovieList.value = movies*/
                 _mutableMovieList.value = loadMoviesFromNetwork()
             } catch (e: Exception) {
                 Log.e(
@@ -39,8 +36,7 @@ class MoviesListViewModel : ViewModel() {
 
         return topRatedMovies.distinct().map {
             DtoMapper.convertMovieFromDto(
-                NetworkService.movieApiService.getMovieById(it),
-                NetworkService.movieApiService.getActors(it)
+                NetworkService.movieApiService.getMovieById(it)
             )
         }
     }

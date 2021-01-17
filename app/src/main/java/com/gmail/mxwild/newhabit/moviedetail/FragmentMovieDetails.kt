@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.aids61517.easyratingview.EasyRatingView
@@ -16,6 +17,7 @@ import com.gmail.mxwild.newhabit.model.data.Movie
 
 class FragmentMovieDetails : Fragment() {
 
+    private val viewModel: ActorViewModel by viewModels { ActorViewModelFactory() }
     private var actorRecycler: RecyclerView? = null
     private var adapter: ActorAdapter = ActorAdapter()
     private var movie: Movie? = null
@@ -40,7 +42,18 @@ class FragmentMovieDetails : Fragment() {
 
         movie?.let { viewMovieDetail(it, view) }
 
+        observeActors()
+
         return view
+    }
+
+    private fun observeActors() {
+
+        viewModel.actorList.observe(viewLifecycleOwner, {actorsList ->
+            actorRecycler?.adapter = adapter
+            actorRecycler?.hasFixedSize()
+            movie?.let { adapter.bindActors(actorsList) }
+        })
     }
 
     private fun viewMovieDetail(movie: Movie, view: View) {
@@ -65,19 +78,12 @@ class FragmentMovieDetails : Fragment() {
         countReviewers.text = getString(R.string.count_reviews, movie.numberOfRatings)
         movieDescription.text = movie.overview
         castText.isVisible = movie.actors.isNotEmpty()
-        loadActors()
+        viewModel.loadActorsByMovieId(movieId = movie.id)
     }
-
 
     override fun onDetach() {
         super.onDetach()
         actorRecycler = null
-    }
-
-    private fun loadActors() {
-        actorRecycler?.adapter = adapter
-        actorRecycler?.hasFixedSize()
-        movie?.let { adapter.bindActors(it.actors) }
     }
 
     companion object {
