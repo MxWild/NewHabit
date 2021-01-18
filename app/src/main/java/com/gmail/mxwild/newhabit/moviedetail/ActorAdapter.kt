@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.gmail.mxwild.newhabit.BuildConfig.ACTOR_IMG_PATH
 import com.gmail.mxwild.newhabit.R
 import com.gmail.mxwild.newhabit.model.data.Actor
 
@@ -40,7 +39,9 @@ class ActorAdapter : RecyclerView.Adapter<ActorAdapter.ViewHolder>() {
 
         fun onBind(actor: Actor) {
             fullName.text = actor.name
-            avatar.load("${ACTOR_IMG_PATH}${actor.picture}")
+            avatar.load(actor.picture) {
+                crossfade(true)
+            }
         }
     }
 }

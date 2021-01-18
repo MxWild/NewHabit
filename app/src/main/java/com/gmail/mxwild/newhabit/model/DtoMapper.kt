@@ -1,5 +1,6 @@
 package com.gmail.mxwild.newhabit.model
 
+import com.gmail.mxwild.newhabit.BuildConfig
 import com.gmail.mxwild.newhabit.BuildConfig.POSTER_PATH
 import com.gmail.mxwild.newhabit.model.data.Actor
 import com.gmail.mxwild.newhabit.model.data.Genre
@@ -36,7 +37,7 @@ object DtoMapper {
         return Actor(
             id = actorDto.id,
             name = actorDto.name,
-            picture = actorDto.profileImg
+            picture = "${BuildConfig.ACTOR_IMG_PATH}${actorDto.profileImg}"
         )
     }
 }

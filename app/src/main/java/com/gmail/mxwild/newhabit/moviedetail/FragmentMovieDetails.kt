@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.aids61517.easyratingview.EasyRatingView
@@ -17,7 +16,7 @@ import com.gmail.mxwild.newhabit.model.data.Movie
 
 class FragmentMovieDetails : Fragment() {
 
-    private val viewModel: ActorViewModel by viewModels { ActorViewModelFactory() }
+    private val viewModel: ActorViewModel = ActorViewModel()
     private var actorRecycler: RecyclerView? = null
     private var adapter: ActorAdapter = ActorAdapter()
     private var movie: Movie? = null
@@ -49,10 +48,10 @@ class FragmentMovieDetails : Fragment() {
 
     private fun observeActors() {
 
-        viewModel.actorList.observe(viewLifecycleOwner, {actorsList ->
+        viewModel.actorList.observe(viewLifecycleOwner, { actorsList ->
             actorRecycler?.adapter = adapter
             actorRecycler?.hasFixedSize()
-            movie?.let { adapter.bindActors(actorsList) }
+            adapter.bindActors(actorsList)
         })
     }
 
@@ -73,7 +72,7 @@ class FragmentMovieDetails : Fragment() {
         }
         minimumAge.text = getString(R.string.minimum_age, movie.minimumAge)
         titleMovieList.text = movie.title
-        movieCategory.text = movie.genres?.joinToString(separator = ", ") { genre -> genre.name }
+        movieCategory.text = movie.genres?.joinToString() { genre -> genre.name }
         moviesRatingBar.rating = movie.ratings * 5 / 10
         countReviewers.text = getString(R.string.count_reviews, movie.numberOfRatings)
         movieDescription.text = movie.overview

@@ -5,12 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gmail.mxwild.newhabit.model.DtoMapper
 import com.gmail.mxwild.newhabit.model.data.Actor
-import com.gmail.mxwild.newhabit.services.NetworkService
+import com.gmail.mxwild.newhabit.repository.ActorRepository
 import kotlinx.coroutines.launch
 
 class ActorViewModel : ViewModel() {
+
+    private val actorRepository = ActorRepository()
 
     private val _mutableActorList = MutableLiveData<List<Actor>>()
     val actorList: LiveData<List<Actor>> get() = _mutableActorList
@@ -18,7 +19,7 @@ class ActorViewModel : ViewModel() {
     fun loadActorsByMovieId(movieId: Int) {
         viewModelScope.launch {
             try {
-                _mutableActorList.value = loadActors(movieId)
+                _mutableActorList.value = actorRepository.getActors(movieId)
             } catch (e: Exception) {
                 Log.e(
                     ActorViewModel::class.java.simpleName,
@@ -26,13 +27,5 @@ class ActorViewModel : ViewModel() {
                 )
             }
         }
-    }
-
-    private suspend fun loadActors(movieId: Int): List<Actor> {
-        return NetworkService.movieApiService
-            .getActors(movieId)
-            .cast
-            .filter { it.profileImg != null }
-            .map { actorDto -> DtoMapper.convertActorFromDto(actorDto) }
     }
 }
