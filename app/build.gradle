@@ -17,6 +17,15 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        def properties = new Properties()
+        def fileProperties = rootProject.file("extra.properties")
+        properties.load(new FileInputStream(fileProperties))
+
+        buildConfigField 'String', "API_KEY", properties['API_KEY']
+        buildConfigField 'String', "BASE_URL", properties['BASE_URL']
+        buildConfigField 'String', "ACTOR_IMG_PATH", properties['ACTOR_IMG_PATH']
+        buildConfigField 'String', "POSTER_PATH", properties['POSTER_PATH']
     }
 
     buildTypes {
@@ -65,8 +74,13 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'
 
+    // Add retrofit
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0'
+
     // Add Coil - image loading library
-    implementation 'io.coil-kt:coil:1.1.0'
+    implementation 'io.coil-kt:coil:1.1.1'
 
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

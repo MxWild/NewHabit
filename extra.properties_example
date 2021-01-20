@@ -1,0 +1,4 @@
+API_KEY="api_token_here"
+BASE_URL="https://api.themoviedb.org/3/"
+ACTOR_IMG_PATH="http://image.tmdb.org/t/p/w92"
+POSTER_PATH="http://image.tmdb.org/t/p/w342"

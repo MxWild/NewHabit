@@ -39,7 +39,9 @@ class ActorAdapter : RecyclerView.Adapter<ActorAdapter.ViewHolder>() {
 
         fun onBind(actor: Actor) {
             fullName.text = actor.name
-            avatar.load(actor.picture)
+            avatar.load(actor.picture) {
+                crossfade(true)
+            }
         }
     }
 }

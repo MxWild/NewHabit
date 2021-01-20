@@ -1,5 +1,6 @@
 package com.gmail.mxwild.newhabit.movieslist
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.mxwild.newhabit.R
 import com.gmail.mxwild.newhabit.model.data.Movie
@@ -31,11 +33,18 @@ class FragmentMoviesList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recycler: RecyclerView = view.findViewById(R.id.movie_list)
         adapter = MoviesAdaptor(clickListener)
+        recycler.layoutManager = GridLayoutManager(context, getSpanCount())
         recycler.adapter = adapter
 
         observeMovies()
 
-        context?.let { viewModel.loadMoviesList(it) }
+        viewModel.loadMoviesList()
+    }
+
+    private fun getSpanCount(): Int {
+        return if (resources.configuration.orientation
+            == Configuration.ORIENTATION_LANDSCAPE
+        ) 3 else 2
     }
 
     private fun observeMovies() {

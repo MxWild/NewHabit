@@ -11,9 +11,9 @@
     android:padding="@dimen/padding_2x4"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp"
+    app:cardPreventCornerOverlap="false"
     app:strokeColor="@color/stroke_card_color"
     app:strokeWidth="1dp"
-    app:cardPreventCornerOverlap="false"
     tools:background="@color/background_color">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +25,6 @@
             android:id="@+id/poster_img_movie_list"
             android:layout_width="@dimen/preview_width"
             android:layout_height="@dimen/preview_height"
-            android:layout_marginStart="@dimen/margin_2x2"
             android:layout_margin="@dimen/margin_2x"
             android:adjustViewBounds="true"
             android:contentDescription="@null"
@@ -85,12 +84,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_3x4"
-            android:layout_marginEnd="@dimen/margin_3x4"
             android:layout_marginTop="@dimen/margin_214"
-            android:text="@string/category"
+            android:layout_marginEnd="@dimen/margin_3x4"
             android:maxLines="2"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/category"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.aids61517.easyratingview.EasyRatingView

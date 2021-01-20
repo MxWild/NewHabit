@@ -16,6 +16,7 @@ import com.gmail.mxwild.newhabit.model.data.Movie
 
 class FragmentMovieDetails : Fragment() {
 
+    private val viewModel: ActorViewModel = ActorViewModel()
     private var actorRecycler: RecyclerView? = null
     private var adapter: ActorAdapter = ActorAdapter()
     private var movie: Movie? = null
@@ -40,7 +41,18 @@ class FragmentMovieDetails : Fragment() {
 
         movie?.let { viewMovieDetail(it, view) }
 
+        observeActors()
+
         return view
+    }
+
+    private fun observeActors() {
+
+        viewModel.actorList.observe(viewLifecycleOwner, { actorsList ->
+            actorRecycler?.adapter = adapter
+            actorRecycler?.hasFixedSize()
+            adapter.bindActors(actorsList)
+        })
     }
 
     private fun viewMovieDetail(movie: Movie, view: View) {
@@ -60,24 +72,17 @@ class FragmentMovieDetails : Fragment() {
         }
         minimumAge.text = getString(R.string.minimum_age, movie.minimumAge)
         titleMovieList.text = movie.title
-        movieCategory.text = movie.genres.joinToString(separator = ", ") { genre -> genre.name }
+        movieCategory.text = movie.genres?.joinToString() { genre -> genre.name }
         moviesRatingBar.rating = movie.ratings * 5 / 10
         countReviewers.text = getString(R.string.count_reviews, movie.numberOfRatings)
         movieDescription.text = movie.overview
         castText.isVisible = movie.actors.isNotEmpty()
-        loadActors()
+        viewModel.loadActorsByMovieId(movieId = movie.id)
     }
-
 
     override fun onDetach() {
         super.onDetach()
         actorRecycler = null
-    }
-
-    private fun loadActors() {
-        actorRecycler?.adapter = adapter
-        actorRecycler?.hasFixedSize()
-        movie?.let { adapter.bindActors(it.actors) }
     }
 
     companion object {
