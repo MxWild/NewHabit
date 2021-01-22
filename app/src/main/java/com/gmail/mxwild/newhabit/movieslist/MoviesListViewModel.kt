@@ -19,7 +19,14 @@ class MoviesListViewModel : ViewModel() {
     fun loadMoviesList() {
         viewModelScope.launch {
             try {
-                _mutableMovieList.value = movieRepository.getMovies()
+                val allMovieFromDB = movieRepository.getAllMovieFromDB()
+
+                if (allMovieFromDB.isNotEmpty()) {
+                    _mutableMovieList.value = allMovieFromDB
+                } else {
+                    _mutableMovieList.value = movieRepository.getMovies()
+                    movieRepository.saveMovies(moviesList.value)
+                }
             } catch (e: Exception) {
                 Log.e(
                     MoviesListViewModel::class.java.simpleName,
@@ -28,5 +35,4 @@ class MoviesListViewModel : ViewModel() {
             }
         }
     }
-
 }
