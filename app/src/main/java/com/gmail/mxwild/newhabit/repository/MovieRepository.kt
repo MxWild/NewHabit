@@ -16,6 +16,18 @@ class MovieRepository {
     private val database = NewHabitDatabase.getDatabase()
 
     suspend fun getMovies(): List<Movie> {
+        val allMovieFromDB = getAllMovieFromDB()
+
+        return if (allMovieFromDB.isNotEmpty()) {
+            allMovieFromDB
+        } else {
+            val moviesFromNetwork = getMoviesFromNetwork()
+            saveMovies(moviesFromNetwork)
+            moviesFromNetwork
+        }
+    }
+
+    private suspend fun getMoviesFromNetwork(): List<Movie> {
         val topRatedMovies = theMovieDbApi
             .getTopRated()
             .results
@@ -28,9 +40,22 @@ class MovieRepository {
         }
     }
 
-    suspend fun getAllMovieFromDB(): List<Movie> {
+    private suspend fun getAllMovieFromDB(): List<Movie> {
         return database.movieDao().getMovieWithGenre().map {
             convertMovieEntityToMovie(it)
+        }
+    }
+
+    private suspend fun saveMovies(movies: List<Movie>?) {
+        if (movies != null) {
+            database.movieDao().insertAll(movies.map { convertMovieToMovieEntity(it) })
+            movies.forEach { movie ->
+                movie.genres?.let { it ->
+                    database.genreDao().insertAll(it.map {
+                        convertToGenreEntity(it, movie.id)
+                    })
+                }
+            }
         }
     }
 
@@ -59,19 +84,6 @@ class MovieRepository {
         minimumAge = movie.minimumAge,
         runtime = movie.runtime
     )
-
-    suspend fun saveMovies(movies: List<Movie>?) {
-        if (movies != null) {
-            database.movieDao().insertAll(movies.map { convertMovieToMovieEntity(it) })
-            movies.forEach { movie ->
-                movie.genres?.let { it ->
-                    database.genreDao().insertAll(it.map {
-                        convertToGenreEntity(it, movie.id)
-                    })
-                }
-            }
-        }
-    }
 
     private fun convertGenreEntityToGenre(genreEntity: GenreEntity) = Genre(
         id = genreEntity.id,

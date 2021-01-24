@@ -19,14 +19,7 @@ class MoviesListViewModel : ViewModel() {
     fun loadMoviesList() {
         viewModelScope.launch {
             try {
-                val allMovieFromDB = movieRepository.getAllMovieFromDB()
-
-                if (allMovieFromDB.isNotEmpty()) {
-                    _mutableMovieList.value = allMovieFromDB
-                } else {
-                    _mutableMovieList.value = movieRepository.getMovies()
-                    movieRepository.saveMovies(moviesList.value)
-                }
+                _mutableMovieList.value = movieRepository.getMovies()
             } catch (e: Exception) {
                 Log.e(
                     MoviesListViewModel::class.java.simpleName,

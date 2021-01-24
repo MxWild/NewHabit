@@ -19,14 +19,7 @@ class ActorViewModel : ViewModel() {
     fun loadActorsByMovieId(movieId: Int) {
         viewModelScope.launch {
             try {
-                val actorsFromDB = actorRepository.getActorFromDB(movieId)
-
-                if (actorsFromDB.isNotEmpty()) {
-                    _mutableActorList.value = actorsFromDB
-                } else {
-                    _mutableActorList.value = actorRepository.getActors(movieId)
-                    actorRepository.saveActors(actorList.value, movieId)
-                }
+                _mutableActorList.value = actorRepository.getActors(movieId)
             } catch (e: Exception) {
                 Log.e(
                     ActorViewModel::class.java.simpleName,

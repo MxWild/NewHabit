@@ -1,13 +1,15 @@
 package com.gmail.mxwild.newhabit.database
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.gmail.mxwild.newhabit.database.entity.MovieEntity
 import com.gmail.mxwild.newhabit.database.entity.MovieWithGenre
 
 @Dao
 interface MovieDao {
 
-    @Transaction
     @Query("SELECT * FROM movie")
     suspend fun getMovieWithGenre(): List<MovieWithGenre>
 

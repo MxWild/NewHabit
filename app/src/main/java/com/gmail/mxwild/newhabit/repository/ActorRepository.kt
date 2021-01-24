@@ -13,14 +13,34 @@ class ActorRepository {
     private val database = NewHabitDatabase.getDatabase()
 
     suspend fun getActors(movieId: Int): List<Actor> {
+        val actorsFromDB = getActorFromDB(movieId)
+
+        return if (actorsFromDB.isNotEmpty()) {
+            actorsFromDB
+        } else {
+            val actorsFromNetwork = getActorsFromNetwork(movieId)
+            saveActors(actorsFromNetwork, movieId)
+            actorsFromNetwork
+        }
+    }
+
+    private suspend fun getActorsFromNetwork(movieId: Int): List<Actor> {
         return theMovieDbApi.getActors(movieId)
             .cast
             .map { actorDto -> DtoMapper.convertActorFromDto(actorDto) }
     }
 
-    suspend fun getActorFromDB(movieId: Int): List<Actor> {
+    private suspend fun getActorFromDB(movieId: Int): List<Actor> {
         return database.actorDao().getByMovieId(movieId).map {
             convertActorEntityToActor(it)
+        }
+    }
+
+    private suspend fun saveActors(actors: List<Actor>?, movieId: Int) {
+        if (actors != null) {
+            database.actorDao().insertAll(actors.map {
+                convertActorToActorEntity(it, movieId)
+            })
         }
     }
 
@@ -30,16 +50,8 @@ class ActorRepository {
         picture = actorEntity.picture
     )
 
-    suspend fun saveActors(actors: List<Actor>?, movieId: Int) {
-        if (actors != null) {
-            database.actorDao().insertAll(actors.map {
-                convertActorToActorEntity(it, movieId)
-            })
-        }
-    }
-
     private fun convertActorToActorEntity(actor: Actor, movieId: Int) = ActorEntity(
-        id = actor.id,
+        id = null,
         name = actor.name,
         picture = actor.picture,
         movieId = movieId
