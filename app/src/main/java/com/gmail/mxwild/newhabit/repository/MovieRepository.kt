@@ -15,8 +15,12 @@ class MovieRepository {
     private val theMovieDbApi: TheMovieDbApi = NetworkService.MOVIE_API
     private val database = NewHabitDatabase.getDatabase()
 
-    suspend fun getMovies(): List<Movie> {
-        val allMovieFromDB = getAllMovieFromDB()
+    suspend fun getMovies(reload: Boolean): List<Movie> {
+        var allMovieFromDB: List<Movie> = emptyList()
+
+        if (!reload) {
+            allMovieFromDB = getAllMovieFromDB()
+        }
 
         return if (allMovieFromDB.isNotEmpty()) {
             allMovieFromDB

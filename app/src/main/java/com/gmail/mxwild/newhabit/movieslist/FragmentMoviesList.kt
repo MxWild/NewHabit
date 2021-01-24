@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.gmail.mxwild.newhabit.R
 import com.gmail.mxwild.newhabit.model.data.Movie
 import com.gmail.mxwild.newhabit.moviedetail.FragmentMovieDetails
@@ -21,6 +23,7 @@ class FragmentMoviesList : Fragment() {
     private val viewModel: MoviesListViewModel by viewModels { MoviesListViewModelFactory() }
 
     private lateinit var adapter: MoviesAdaptor
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +34,7 @@ class FragmentMoviesList : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         val recycler: RecyclerView = view.findViewById(R.id.movie_list)
         adapter = MoviesAdaptor(clickListener)
         recycler.layoutManager = GridLayoutManager(context, getSpanCount())
@@ -38,7 +42,15 @@ class FragmentMoviesList : Fragment() {
 
         observeMovies()
 
-        viewModel.loadMoviesList()
+        viewModel.loadMoviesList(false)
+
+        swipeRefreshLayout = view.findViewById(R.id.swipe_layout)
+        swipeRefreshLayout.setOnRefreshListener {
+            Toast.makeText(context, "Reload data", Toast.LENGTH_SHORT).show()
+            viewModel.loadMoviesList(true)
+            swipeRefreshLayout.isRefreshing = false
+        }
+
     }
 
     private fun getSpanCount(): Int {
