@@ -6,13 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "actor")
 data class ActorEntity(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    val id: Int?,
+    @PrimaryKey
+    val actorId: Int,
     @ColumnInfo(name = "name")
     val name: String,
     @ColumnInfo(name = "picture")
-    val picture: String?,
-    @ColumnInfo(name = "actor_movie_id")
-    val movieId: Int
+    val picture: String?
 )

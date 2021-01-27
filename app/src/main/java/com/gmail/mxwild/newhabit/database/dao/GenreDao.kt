@@ -1,4 +1,4 @@
-package com.gmail.mxwild.newhabit.database
+package com.gmail.mxwild.newhabit.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -6,11 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "genre")
 data class GenreEntity(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    val id: Int?,
+    @PrimaryKey
+    val genreId: Int,
     @ColumnInfo(name = "name")
-    val name: String,
-    @ColumnInfo(name = "genre_movie_id")
-    val genreMovieId: Int
+    val name: String
 )

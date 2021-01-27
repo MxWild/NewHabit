@@ -46,9 +46,8 @@ class FragmentMoviesList : Fragment() {
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_layout)
         swipeRefreshLayout.setOnRefreshListener {
-            Toast.makeText(context, "Reload data", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.reload_data), Toast.LENGTH_SHORT).show()
             viewModel.loadMoviesList(true)
-            swipeRefreshLayout.isRefreshing = false
         }
 
     }
@@ -70,6 +69,7 @@ class FragmentMoviesList : Fragment() {
         viewModel.moviesList.observe(viewLifecycleOwner, { movieList ->
             adapter.bindMovies(movieList)
             progressBar?.isVisible = false
+            swipeRefreshLayout.isRefreshing = false
         })
     }
 

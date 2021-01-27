@@ -4,7 +4,8 @@ import com.gmail.mxwild.newhabit.api.TheMovieDbApi
 import com.gmail.mxwild.newhabit.database.NewHabitDatabase
 import com.gmail.mxwild.newhabit.database.entity.GenreEntity
 import com.gmail.mxwild.newhabit.database.entity.MovieEntity
-import com.gmail.mxwild.newhabit.database.entity.MovieWithGenre
+import com.gmail.mxwild.newhabit.database.entity.MovieGenreJoin
+import com.gmail.mxwild.newhabit.database.entity.MovieWithGenres
 import com.gmail.mxwild.newhabit.model.DtoMapper
 import com.gmail.mxwild.newhabit.model.data.Genre
 import com.gmail.mxwild.newhabit.model.data.Movie
@@ -45,7 +46,7 @@ class MovieRepository {
     }
 
     private suspend fun getAllMovieFromDB(): List<Movie> {
-        return database.movieDao().getMovieWithGenre().map {
+        return database.movieDao().getMovieWithGenres().map {
             convertMovieEntityToMovie(it)
         }
     }
@@ -53,18 +54,25 @@ class MovieRepository {
     private suspend fun saveMovies(movies: List<Movie>?) {
         if (movies != null) {
             database.movieDao().insertAll(movies.map { convertMovieToMovieEntity(it) })
+
             movies.forEach { movie ->
                 movie.genres?.let { it ->
                     database.genreDao().insertAll(it.map {
-                        convertToGenreEntity(it, movie.id)
+                        convertToGenreEntity(it)
                     })
+                }
+                if (!movie.genres.isNullOrEmpty()) {
+                    for (genre in movie.genres) {
+                        database.movieWithGenre()
+                            .insert(MovieGenreJoin(movie.id, genre.id))
+                    }
                 }
             }
         }
     }
 
-    private fun convertMovieEntityToMovie(movieEntity: MovieWithGenre) = Movie(
-        id = movieEntity.movie.id,
+    private fun convertMovieEntityToMovie(movieEntity: MovieWithGenres) = Movie(
+        id = movieEntity.movie.movieId,
         title = movieEntity.movie.title,
         overview = movieEntity.movie.overview,
         poster = movieEntity.movie.poster,
@@ -78,7 +86,7 @@ class MovieRepository {
     )
 
     private fun convertMovieToMovieEntity(movie: Movie) = MovieEntity(
-        id = movie.id,
+        movieId = movie.id,
         title = movie.title,
         overview = movie.overview,
         poster = movie.poster,
@@ -90,14 +98,13 @@ class MovieRepository {
     )
 
     private fun convertGenreEntityToGenre(genreEntity: GenreEntity) = Genre(
-        id = genreEntity.id,
+        id = genreEntity.genreId,
         name = genreEntity.name
     )
 
-    private fun convertToGenreEntity(genre: Genre, movieId: Int) = GenreEntity(
-        id = null,
-        name = genre.name,
-        genreMovieId = movieId
+    private fun convertToGenreEntity(genre: Genre) = GenreEntity(
+        genreId = genre.id,
+        name = genre.name
     )
 
 }
