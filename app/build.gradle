@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -48,6 +49,7 @@ android {
 
 dependencies {
     def fragment_version = "1.2.5"
+    def room_version = "2.2.6"
 
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
@@ -79,10 +81,19 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0'
 
+    // Add Room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // Add Swipe when pull down
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
     // Add Coil - image loading library
     implementation 'io.coil-kt:coil:1.1.1'
 
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
 }

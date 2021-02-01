@@ -16,10 +16,10 @@ class MoviesListViewModel : ViewModel() {
     private val _mutableMovieList = MutableLiveData<List<Movie>>()
     val moviesList: LiveData<List<Movie>> get() = _mutableMovieList
 
-    fun loadMoviesList() {
+    fun loadMoviesList(reloadData: Boolean) {
         viewModelScope.launch {
             try {
-                _mutableMovieList.value = movieRepository.getMovies()
+                _mutableMovieList.value = movieRepository.getMovies(reloadData)
             } catch (e: Exception) {
                 Log.e(
                     MoviesListViewModel::class.java.simpleName,
@@ -28,5 +28,4 @@ class MoviesListViewModel : ViewModel() {
             }
         }
     }
-
 }
