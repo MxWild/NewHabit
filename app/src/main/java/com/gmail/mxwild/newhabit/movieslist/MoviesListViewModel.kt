@@ -8,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.gmail.mxwild.newhabit.model.data.Movie
 import com.gmail.mxwild.newhabit.repository.MovieRepository
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
 class MoviesListViewModel : ViewModel() {
 
@@ -15,11 +17,14 @@ class MoviesListViewModel : ViewModel() {
 
     private val _mutableMovieList = MutableLiveData<List<Movie>>()
     val moviesList: LiveData<List<Movie>> get() = _mutableMovieList
+    private val mutex = Mutex()
 
-    fun loadMoviesList(reloadData: Boolean) {
+    fun loadMoviesList(isReloadData: Boolean) {
         viewModelScope.launch {
             try {
-                _mutableMovieList.value = movieRepository.getMovies(reloadData)
+                mutex.withLock {
+                    _mutableMovieList.value = movieRepository.getMovies(isReloadData, false)
+                }
             } catch (e: Exception) {
                 Log.e(
                     MoviesListViewModel::class.java.simpleName,

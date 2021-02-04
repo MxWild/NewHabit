@@ -92,6 +92,10 @@ dependencies {
     // Add Coil - image loading library
     implementation 'io.coil-kt:coil:1.1.1'
 
+    // Add work manager
+    implementation 'androidx.work:work-runtime:2.4.0'
+    implementation 'androidx.work:work-runtime-ktx:2.4.0'
+
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

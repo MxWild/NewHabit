@@ -16,4 +16,4 @@ data class Movie(
     val runtime: Int?,
     val genres: List<Genre>? = emptyList(),
     val actors: List<Actor> = emptyList()
-) : Parcelable
+    ) : Parcelable

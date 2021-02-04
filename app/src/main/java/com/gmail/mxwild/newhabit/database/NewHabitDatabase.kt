@@ -4,7 +4,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.gmail.mxwild.newhabit.App
-import com.gmail.mxwild.newhabit.database.dao.*
+import com.gmail.mxwild.newhabit.database.dao.ActorDao
+import com.gmail.mxwild.newhabit.database.dao.GenreDao
+import com.gmail.mxwild.newhabit.database.dao.MovieDao
 import com.gmail.mxwild.newhabit.database.entity.*
 
 @Database(entities = [
@@ -18,8 +20,6 @@ abstract class NewHabitDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
     abstract fun actorDao(): ActorDao
     abstract fun genreDao(): GenreDao
-    abstract fun movieWithGenre(): MovieGenreJoinDao
-    abstract fun movieWithActor(): MovieActorJoinDao
 
     companion object {
 
