@@ -36,7 +36,7 @@ class MovieRepository {
 
     private suspend fun getMoviesFromNetwork(isBackground: Boolean): List<Movie> {
 
-        val movies = listOf<Movie>().toMutableList()
+        val movies = mutableListOf<Movie>()
         var startPage = 1L
         var endPage = App.pageCounter.get()
 
