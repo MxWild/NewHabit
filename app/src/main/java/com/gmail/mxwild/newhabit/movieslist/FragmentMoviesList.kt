@@ -54,7 +54,7 @@ class FragmentMoviesList : Fragment() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
 
-                if (!recyclerView.canScrollVertically(1)) {
+                if (!recyclerView.canScrollVertically(DOWN_TO_LIST)) {
                     viewModel.loadMoviesList(true)
                 }
             }
@@ -102,5 +102,7 @@ class FragmentMoviesList : Fragment() {
 
     companion object {
         fun newInstance() = FragmentMoviesList()
+        // direction integers: -1 for up, 1 for down, 0 will always return false.
+        const val DOWN_TO_LIST = 1
     }
 }

@@ -73,7 +73,7 @@ class MovieRepository {
         }
     }
 
-    suspend fun saveMovies(movies: List<Movie>?) {
+    private suspend fun saveMovies(movies: List<Movie>?) {
         if (movies != null) {
             database.movieDao().insertAll(movies.map { convertMovieToMovieEntity(it) })
 
@@ -84,10 +84,13 @@ class MovieRepository {
                     })
                 }
                 if (!movie.genres.isNullOrEmpty()) {
-                    for (genre in movie.genres) {
+                    val map = movie.genres.map { genre -> MovieGenreJoin(movie.id, genre.id) }
+                    database.movieDao().insertAllMovieWithGenres(map)
+
+                    /*for (genre in movie.genres) {
                         database.movieDao()
                             .insertMovieWithGenre(MovieGenreJoin(movie.id, genre.id))
-                    }
+                    }*/
                 }
             }
         }

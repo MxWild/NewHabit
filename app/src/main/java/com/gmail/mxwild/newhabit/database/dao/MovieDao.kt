@@ -19,11 +19,14 @@ interface MovieDao {
     suspend fun insertMovieWithGenre(join: MovieGenreJoin)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAllMovieWithGenres(join: List<MovieGenreJoin>)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertMovieWithActors(join: MovieActorJoin)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(movies: List<MovieEntity>)
 
     @Update
-    suspend fun updateAll(map: List<MovieEntity>)
+    suspend fun updateAll(movies: List<MovieEntity>)
 }
