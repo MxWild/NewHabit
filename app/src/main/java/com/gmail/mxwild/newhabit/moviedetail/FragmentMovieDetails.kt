@@ -76,7 +76,7 @@ class FragmentMovieDetails : Fragment() {
         moviesRatingBar.rating = movie.ratings * 5 / 10
         countReviewers.text = getString(R.string.count_reviews, movie.numberOfRatings)
         movieDescription.text = movie.overview
-        castText.isVisible = movie.actors.isNotEmpty()
+        castText.isVisible = movie.actors.isNullOrEmpty()
         viewModel.loadActorsByMovieId(movieId = movie.id)
     }
 

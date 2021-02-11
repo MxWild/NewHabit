@@ -32,7 +32,7 @@ class ActorRepository {
     }
 
     private suspend fun getActorFromDB(movieId: Int): List<Actor> {
-        return database.movieWithActor().getActorsByMovieId(movieId).map {
+        return database.actorDao().getActorsByMovieId(movieId).map {
             convertActorEntityToActor(it)
         }
     }
@@ -43,7 +43,8 @@ class ActorRepository {
                 convertActorToActorEntity(it)
             })
             for (actor in actors) {
-                database.movieWithActor().insert(MovieActorJoin(movieId, actor.id))
+                database.movieDao()
+                    .insertMovieWithActors(MovieActorJoin(movieId, actor.id))
             }
         }
     }

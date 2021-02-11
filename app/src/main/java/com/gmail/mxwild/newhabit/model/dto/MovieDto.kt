@@ -12,7 +12,7 @@ data class MovieDto(
     @SerialName("poster_path")
     val poster: String,
     @SerialName("backdrop_path")
-    val backdropImg: String,
+    val backdropImg: String?,
     @SerialName("runtime")
     var runtime: Int? = null,
     @SerialName("genres")

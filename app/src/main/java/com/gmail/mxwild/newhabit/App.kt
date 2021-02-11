@@ -2,6 +2,7 @@ package com.gmail.mxwild.newhabit
 
 import android.app.Application
 import android.content.Context
+import java.util.concurrent.atomic.AtomicLong
 
 class App : Application() {
 
@@ -13,5 +14,7 @@ class App : Application() {
     companion object {
         private var context: Context? = null
         fun getContext(): Context = context ?: throw IllegalStateException()
+
+        val pageCounter = AtomicLong(1)
     }
 }
