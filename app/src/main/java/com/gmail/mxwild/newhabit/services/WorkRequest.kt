@@ -16,7 +16,7 @@ class WorkRequest {
     val periodicRequest = PeriodicWorkRequest
         .Builder(NetWorker::class.java, REPEAT_TIME, TimeUnit.MINUTES)
         .setConstraints(constraints)
-        .setInitialDelay(WORKER_DELAY_TIME, TimeUnit.MINUTES)
+        .setInitialDelay(WORKER_DELAY_TIME, TimeUnit.SECONDS)
         .build()
 
 

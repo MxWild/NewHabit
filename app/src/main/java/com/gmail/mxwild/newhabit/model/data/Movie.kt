@@ -2,8 +2,10 @@ package com.gmail.mxwild.newhabit.model.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
 @Parcelize
+@Serializable
 data class Movie(
     val id: Int,
     val title: String,
