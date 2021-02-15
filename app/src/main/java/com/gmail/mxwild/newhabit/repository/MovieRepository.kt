@@ -4,12 +4,11 @@ import android.util.Log
 import com.gmail.mxwild.newhabit.App
 import com.gmail.mxwild.newhabit.api.TheMovieDbApi
 import com.gmail.mxwild.newhabit.database.NewHabitDatabase
-import com.gmail.mxwild.newhabit.database.entity.GenreEntity
-import com.gmail.mxwild.newhabit.database.entity.MovieEntity
 import com.gmail.mxwild.newhabit.database.entity.MovieGenreJoin
-import com.gmail.mxwild.newhabit.database.entity.MovieWithGenres
+import com.gmail.mxwild.newhabit.model.Converter.Companion.convertMovieEntityToMovie
+import com.gmail.mxwild.newhabit.model.Converter.Companion.convertMovieToMovieEntity
+import com.gmail.mxwild.newhabit.model.Converter.Companion.convertToGenreEntity
 import com.gmail.mxwild.newhabit.model.DtoMapper
-import com.gmail.mxwild.newhabit.model.data.Genre
 import com.gmail.mxwild.newhabit.model.data.Movie
 import com.gmail.mxwild.newhabit.services.NetworkService
 
@@ -43,7 +42,7 @@ class MovieRepository {
         if (!isBackground) {
             val topRatedResponse = theMovieDbApi.getTopRated()
             startPage = App.pageCounter.get()
-            endPage = if (startPage + 5 <= topRatedResponse.totalPages) startPage + 5
+            endPage = if (startPage + HOW_MANY_PAGE_LOAD <= topRatedResponse.totalPages) startPage + HOW_MANY_PAGE_LOAD
             else topRatedResponse.totalPages
         }
 
@@ -84,60 +83,22 @@ class MovieRepository {
                     })
                 }
                 if (!movie.genres.isNullOrEmpty()) {
-                    val map = movie.genres.map { genre -> MovieGenreJoin(movie.id, genre.id) }
-                    database.movieDao().insertAllMovieWithGenres(map)
-
-                    /*for (genre in movie.genres) {
-                        database.movieDao()
-                            .insertMovieWithGenre(MovieGenreJoin(movie.id, genre.id))
-                    }*/
+                    val movieGenreJoin = movie.genres.map { genre -> MovieGenreJoin(movie.id, genre.id) }
+                    database.movieDao().insertAllMovieWithGenres(movieGenreJoin)
                 }
             }
         }
+
+
     }
 
     suspend fun update(movies: List<Movie>) {
         database.movieDao().updateAll(movies.map { convertMovieToMovieEntity(it) })
     }
 
-    private fun convertMovieEntityToMovie(movieEntity: MovieWithGenres) = Movie(
-        id = movieEntity.movie.movieId,
-        title = movieEntity.movie.title,
-        overview = movieEntity.movie.overview,
-        poster = movieEntity.movie.poster,
-        backdrop = movieEntity.movie.backdrop,
-        ratings = movieEntity.movie.ratings,
-        numberOfRatings = movieEntity.movie.numberOfRatings,
-        minimumAge = movieEntity.movie.minimumAge,
-        runtime = movieEntity.movie.runtime,
-        genres = movieEntity.genres.map { convertGenreEntityToGenre(it) },
-        actors = emptyList()
-    )
-
-    private fun convertMovieToMovieEntity(movie: Movie) = MovieEntity(
-        movieId = movie.id,
-        title = movie.title,
-        overview = movie.overview,
-        poster = movie.poster,
-        backdrop = movie.backdrop,
-        ratings = movie.ratings,
-        numberOfRatings = movie.numberOfRatings,
-        minimumAge = movie.minimumAge,
-        runtime = movie.runtime
-    )
-
-    private fun convertGenreEntityToGenre(genreEntity: GenreEntity) = Genre(
-        id = genreEntity.genreId,
-        name = genreEntity.name
-    )
-
-    private fun convertToGenreEntity(genre: Genre) = GenreEntity(
-        genreId = genre.id,
-        name = genre.name
-    )
-
     companion object {
         private const val TAG = "MovieRepository"
+        private const val HOW_MANY_PAGE_LOAD = 3
     }
 
 }

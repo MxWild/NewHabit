@@ -29,4 +29,10 @@ interface MovieDao {
 
     @Update
     suspend fun updateAll(movies: List<MovieEntity>)
+
+    @Query(
+        """SELECT * FROM movie WHERE 
+        number_of_ratings = (SELECT max(number_of_ratings) FROM movie)"""
+    )
+    suspend fun getWithMaxNumberOfRating(): MovieWithGenres
 }

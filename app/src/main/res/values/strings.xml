@@ -24,4 +24,6 @@
     <string name="movie_poster_description">movie_poster</string>
     <string name="pg_background_description">pg_background</string>
     <string name="reload_data">Reload data</string>
+    <string name="new_top_movie">New Top Movie</string>
+    <string name="new_top_movie_description">New Top Movie Here</string>
 </resources>
