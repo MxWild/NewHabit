@@ -1,6 +1,7 @@
 package com.gmail.mxwild.newhabit
 
 import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.core.app.NotificationChannelCompat
@@ -18,6 +19,8 @@ interface Notifications {
 
 class MovieNotification : Notifications {
 
+    private lateinit var context: Context
+
     companion object {
         private const val CHANNEL_NEW_MESSAGES = "movie"
         private const val NOTIFY_CHANNEL_ID = "NOTIFY_CHANNEL"
@@ -29,11 +32,13 @@ class MovieNotification : Notifications {
         NotificationManagerCompat.from(App.getContext())
 
     override fun initialize() {
+        context = App.getContext()
+
         if (notificationManagerCompat.getNotificationChannel(CHANNEL_NEW_MESSAGES) == null) {
             notificationManagerCompat.createNotificationChannel(
                 NotificationChannelCompat.Builder(NOTIFY_CHANNEL_ID, IMPORTANCE_HIGH)
-                    .setName("New Top Movie")
-                    .setDescription("New Top Movie Here")
+                    .setName(context.getString(R.string.new_top_movie))
+                    .setDescription(context.getString(R.string.new_top_movie_description))
                     .build()
             )
         }
@@ -47,9 +52,9 @@ class MovieNotification : Notifications {
             .putExtra(MOVIE_OBJECT, movie)
 
         val pendingIntent: PendingIntent = PendingIntent
-            .getActivity(App.getContext(), REQUEST_CONTENT, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            .getActivity(context, REQUEST_CONTENT, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
-        val notification = NotificationCompat.Builder(App.getContext(), NOTIFY_CHANNEL_ID)
+        val notification = NotificationCompat.Builder(context, NOTIFY_CHANNEL_ID)
             .setSmallIcon(R.drawable.notification_icon)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentTitle(movie.title)
