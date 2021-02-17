@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import com.gmail.mxwild.newhabit.model.data.Movie
+import com.gmail.mxwild.newhabit.moviedetail.FragmentMovieDetails
+import com.gmail.mxwild.newhabit.moviedetail.FragmentMovieDetails.Companion.MOVIE_OBJECT
+import com.gmail.mxwild.newhabit.movieslist.FragmentMoviesList
 import com.gmail.mxwild.newhabit.services.WorkRequest
-import com.gmail.mxwild.newhabit.ui.moviedetail.FragmentMovieDetails
-import com.gmail.mxwild.newhabit.ui.moviedetail.FragmentMovieDetails.Companion.MOVIE_OBJECT
-import com.gmail.mxwild.newhabit.ui.movieslist.FragmentMoviesList
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

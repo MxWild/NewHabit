@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.gmail.mxwild.newhabit.MovieNotification
 import com.gmail.mxwild.newhabit.database.dao.MovieDao
 import com.gmail.mxwild.newhabit.model.Converter.Companion.convertMovieEntityToMovie
 import com.gmail.mxwild.newhabit.repository.MovieRepository
