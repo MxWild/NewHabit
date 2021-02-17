@@ -1,43 +1,23 @@
 package com.gmail.mxwild.newhabit.database
 
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.gmail.mxwild.newhabit.App
 import com.gmail.mxwild.newhabit.database.dao.ActorDao
 import com.gmail.mxwild.newhabit.database.dao.GenreDao
 import com.gmail.mxwild.newhabit.database.dao.MovieDao
 import com.gmail.mxwild.newhabit.database.entity.*
 
-@Database(entities = [
-    ActorEntity::class,
-    GenreEntity::class,
-    MovieEntity::class,
-    MovieGenreJoin::class,
-    MovieActorJoin::class], version = 1)
+@Database(
+    entities = [
+        ActorEntity::class,
+        GenreEntity::class,
+        MovieEntity::class,
+        MovieGenreJoin::class,
+        MovieActorJoin::class], version = 1, exportSchema = false
+)
 abstract class NewHabitDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
     abstract fun actorDao(): ActorDao
     abstract fun genreDao(): GenreDao
-
-    companion object {
-
-        private const val DB_NAME = "movie.db"
-
-        @Volatile
-        private var INSTANCE: NewHabitDatabase? = null
-
-        fun getDatabase(): NewHabitDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    App.getContext(),
-                    NewHabitDatabase::class.java,
-                    DB_NAME
-                ).build()
-                INSTANCE = instance
-                instance
-            }
-        }
-    }
 }

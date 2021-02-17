@@ -2,8 +2,10 @@ package com.gmail.mxwild.newhabit
 
 import android.app.Application
 import android.content.Context
+import dagger.hilt.android.HiltAndroidApp
 import java.util.concurrent.atomic.AtomicLong
 
+@HiltAndroidApp
 class App : Application() {
 
     override fun onCreate() {
@@ -17,4 +19,5 @@ class App : Application() {
 
         val pageCounter = AtomicLong(1)
     }
+
 }

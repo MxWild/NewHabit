@@ -4,9 +4,10 @@ import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequest
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 
-class WorkRequest {
+class WorkRequest @Inject constructor() {
 
     private val constraints = Constraints.Builder()
         .setRequiredNetworkType(NetworkType.UNMETERED)

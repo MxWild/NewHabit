@@ -8,15 +8,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.aids61517.easyratingview.EasyRatingView
 import com.gmail.mxwild.newhabit.R
 import com.gmail.mxwild.newhabit.model.data.Movie
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FragmentMovieDetails : Fragment() {
 
-    private val viewModel: ActorViewModel = ActorViewModel()
+    private val viewModel: ActorViewModel by viewModels()
+
     private var actorRecycler: RecyclerView? = null
     private var adapter: ActorAdapter = ActorAdapter()
     private var movie: Movie? = null

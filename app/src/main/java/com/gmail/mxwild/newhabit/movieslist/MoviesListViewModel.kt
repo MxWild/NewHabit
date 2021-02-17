@@ -7,13 +7,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gmail.mxwild.newhabit.model.data.Movie
 import com.gmail.mxwild.newhabit.repository.MovieRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import javax.inject.Inject
 
-class MoviesListViewModel : ViewModel() {
-
-    private val movieRepository = MovieRepository()
+@HiltViewModel
+class MoviesListViewModel @Inject constructor(
+    private var movieRepository: MovieRepository
+) : ViewModel() {
 
     private val _mutableMovieList = MutableLiveData<List<Movie>>()
     val moviesList: LiveData<List<Movie>> get() = _mutableMovieList

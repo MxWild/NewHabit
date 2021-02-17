@@ -13,10 +13,14 @@ import com.gmail.mxwild.newhabit.moviedetail.FragmentMovieDetails.Companion.MOVI
 import com.gmail.mxwild.newhabit.movieslist.FragmentMoviesList
 import com.gmail.mxwild.newhabit.services.WorkRequest
 import com.gmail.mxwild.newhabit.services.WorkRequest.Companion.NEW_HABIT_NETWORK
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val workRequest = WorkRequest()
+    @Inject
+    lateinit var workRequest: WorkRequest
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
