@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -27,8 +28,12 @@ class MoviesAdaptor(private val listener: OnItemClickListener) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.d("MoviesAdapter", "onBindViewHolder for position := $position")
         holder.onBind(movies[position], listener)
+
+        holder.itemView.animation = AnimationUtils.loadAnimation(
+            holder.itemView.context,
+            R.anim.list_animation
+        )
     }
 
     override fun getItemCount(): Int = movies.size

@@ -3,6 +3,7 @@ package com.gmail.mxwild.newhabit.moviedetail
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +24,11 @@ class ActorAdapter : RecyclerView.Adapter<ActorAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind(actors[position])
+
+        holder.itemView.animation = AnimationUtils.loadAnimation(
+            holder.itemView.context,
+            R.anim.list_animation
+        )
     }
 
     override fun getItemCount(): Int = actors.size

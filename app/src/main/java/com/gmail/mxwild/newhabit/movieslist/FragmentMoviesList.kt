@@ -84,6 +84,7 @@ class FragmentMoviesList : Fragment() {
 
         view?.findViewById<ImageView>(R.id.poster_img_movie_list)?.apply {
             parentFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.scale_up_anim, R.anim.scale_down_anim)
                 .addToBackStack(null)
                 .replace(R.id.fragment_container, movieDetails)
                 .commit()
