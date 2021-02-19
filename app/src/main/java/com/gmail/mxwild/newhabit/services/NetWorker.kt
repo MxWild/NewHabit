@@ -2,19 +2,25 @@ package com.gmail.mxwild.newhabit.services
 
 import android.content.Context
 import android.util.Log
+import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.gmail.mxwild.newhabit.MovieNotification
-import com.gmail.mxwild.newhabit.database.NewHabitDatabase
+import com.gmail.mxwild.newhabit.database.dao.MovieDao
 import com.gmail.mxwild.newhabit.model.Converter.Companion.convertMovieEntityToMovie
 import com.gmail.mxwild.newhabit.repository.MovieRepository
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 
-class NetWorker(context: Context, workerParameters: WorkerParameters) :
-    CoroutineWorker(context, workerParameters) {
+@HiltWorker
+class NetWorker @AssistedInject constructor(
+    @Assisted context: Context,
+    @Assisted workerParameters: WorkerParameters,
+    private val movieRepository: MovieRepository,
+    private val movieDao: MovieDao
+) : CoroutineWorker(context, workerParameters) {
 
-    private val movieRepository = MovieRepository()
     private val notification = MovieNotification()
-    private val database = NewHabitDatabase.getDatabase()
 
     init {
         notification.initialize()
@@ -31,7 +37,7 @@ class NetWorker(context: Context, workerParameters: WorkerParameters) :
             val differentTime = System.currentTimeMillis() - startTime
             Log.i(TAG, "${differentTime / 1000} secs was wasted for update movies")
 
-            val movieWithMaxNumberOfRating = database.movieDao().getWithMaxNumberOfRating()
+            val movieWithMaxNumberOfRating = movieDao.getWithMaxNumberOfRating()
             notification.showNotification(convertMovieEntityToMovie(movieWithMaxNumberOfRating))
 
             Result.success()
@@ -42,6 +48,6 @@ class NetWorker(context: Context, workerParameters: WorkerParameters) :
     }
 
     companion object {
-        private const val TAG = "NetWorker"
+        const val TAG = "NetWorker"
     }
 }

@@ -1,8 +1,10 @@
 package com.gmail.mxwild.newhabit.model
 
+import com.gmail.mxwild.newhabit.database.entity.ActorEntity
 import com.gmail.mxwild.newhabit.database.entity.GenreEntity
 import com.gmail.mxwild.newhabit.database.entity.MovieEntity
 import com.gmail.mxwild.newhabit.database.entity.MovieWithGenres
+import com.gmail.mxwild.newhabit.model.data.Actor
 import com.gmail.mxwild.newhabit.model.data.Genre
 import com.gmail.mxwild.newhabit.model.data.Movie
 
@@ -44,6 +46,18 @@ class Converter {
         fun convertToGenreEntity(genre: Genre) = GenreEntity(
             genreId = genre.id,
             name = genre.name
+        )
+
+        fun convertActorEntityToActor(actorEntity: ActorEntity) = Actor(
+            id = actorEntity.actorId,
+            name = actorEntity.name,
+            picture = actorEntity.picture
+        )
+
+        fun convertActorToActorEntity(actor: Actor) = ActorEntity(
+            actorId = actor.id,
+            name = actor.name,
+            picture = actor.picture
         )
     }
 }

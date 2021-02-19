@@ -2,9 +2,16 @@ package com.gmail.mxwild.newhabit.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "movie")
+@Entity(
+    tableName = "movie",
+    indices = [
+        Index(value = ["movieId"]),
+        Index(value = ["number_of_ratings"])
+    ]
+)
 data class MovieEntity(
     @PrimaryKey
     val movieId: Int,

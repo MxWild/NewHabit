@@ -17,10 +17,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.gmail.mxwild.newhabit.R
 import com.gmail.mxwild.newhabit.model.data.Movie
 import com.gmail.mxwild.newhabit.moviedetail.FragmentMovieDetails
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FragmentMoviesList : Fragment() {
 
-    private val viewModel: MoviesListViewModel by viewModels { MoviesListViewModelFactory() }
+    private val viewModel: MoviesListViewModel by viewModels()
 
     private lateinit var adapter: MoviesAdaptor
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
@@ -50,7 +52,7 @@ class FragmentMoviesList : Fragment() {
             viewModel.loadMoviesList(true)
         }
 
-        recycler.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+        recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
 
@@ -102,6 +104,7 @@ class FragmentMoviesList : Fragment() {
 
     companion object {
         fun newInstance() = FragmentMoviesList()
+
         // direction integers: -1 for up, 1 for down, 0 will always return false.
         const val DOWN_TO_LIST = 1
     }
