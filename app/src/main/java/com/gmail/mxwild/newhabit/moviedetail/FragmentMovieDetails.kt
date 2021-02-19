@@ -47,7 +47,6 @@ class FragmentMovieDetails : Fragment() {
     }
 
     private fun observeActors() {
-
         viewModel.actorList.observe(viewLifecycleOwner, { actorsList ->
             actorRecycler?.adapter = adapter
             actorRecycler?.hasFixedSize()
