@@ -11,8 +11,9 @@ import com.gmail.mxwild.newhabit.model.Converter.Companion.convertMovieToMovieEn
 import com.gmail.mxwild.newhabit.model.Converter.Companion.convertToGenreEntity
 import com.gmail.mxwild.newhabit.model.DtoMapper
 import com.gmail.mxwild.newhabit.model.data.Movie
+import javax.inject.Inject
 
-class MovieRepository constructor(
+class MovieRepository @Inject constructor(
     private val movieDao: MovieDao,
     private val genreDao: GenreDao,
     private val theMovieDbApi: TheMovieDbApi
@@ -43,8 +44,7 @@ class MovieRepository constructor(
         if (!isBackground) {
             val topRatedResponse = theMovieDbApi.getTopRated()
             startPage = App.pageCounter.get()
-            endPage =
-                if (startPage + HOW_MANY_PAGE_LOAD <= topRatedResponse.totalPages) startPage + HOW_MANY_PAGE_LOAD
+            endPage = if (startPage + HOW_MANY_PAGE_LOAD <= topRatedResponse.totalPages) startPage + HOW_MANY_PAGE_LOAD
                 else topRatedResponse.totalPages
         }
 

@@ -8,8 +8,9 @@ import com.gmail.mxwild.newhabit.model.Converter.Companion.convertActorEntityToA
 import com.gmail.mxwild.newhabit.model.Converter.Companion.convertActorToActorEntity
 import com.gmail.mxwild.newhabit.model.DtoMapper
 import com.gmail.mxwild.newhabit.model.data.Actor
+import javax.inject.Inject
 
-class ActorRepository constructor(
+class ActorRepository @Inject constructor(
     private val movieDao: MovieDao,
     private val actorDao: ActorDao,
     private val theMovieDbApi: TheMovieDbApi
