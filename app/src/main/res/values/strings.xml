@@ -24,4 +24,7 @@
     <string name="movie_poster_description">movie_poster</string>
     <string name="pg_background_description">pg_background</string>
     <string name="reload_data">Reload data</string>
+
+    <string name="movie_details_shared">movie_details_shared</string>
+    <string name="movie_details_shared_with_id">movie_details_shared__$1%s</string>
 </resources>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+    <integer name="reply_motion_duration_large">1000</integer>
 
     <dimen name="margin_2x">2dp</dimen>
     <dimen name="margin_2x2">4dp</dimen>

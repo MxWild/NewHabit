@@ -4,7 +4,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -30,10 +29,10 @@ class MoviesAdaptor(private val listener: OnItemClickListener) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind(movies[position], listener)
 
-        holder.itemView.animation = AnimationUtils.loadAnimation(
+/*        holder.itemView.animation = AnimationUtils.loadAnimation(
             holder.itemView.context,
             R.anim.list_animation
-        )
+        )*/
     }
 
     override fun getItemCount(): Int = movies.size
@@ -54,6 +53,7 @@ class MoviesAdaptor(private val listener: OnItemClickListener) :
         private val posterImage = item.findViewById<ImageView>(R.id.poster_img_movie_list)
 
         fun onBind(movie: Movie, listener: OnItemClickListener) {
+            itemView.transitionName = context.getString(R.string.movie_details_shared_with_id, movie.id.toString())
             Log.d("Load Movie ", " :=  $movie")
             title.text = movie.title
             minimumAge.text = context.getString(R.string.minimum_age, movie.minimumAge)
@@ -68,7 +68,7 @@ class MoviesAdaptor(private val listener: OnItemClickListener) :
 
             itemView.setOnClickListener {
                 Log.d("Click on movie: ", "${movie.id}")
-                listener.onClick(movie)
+                listener.onClick(movie, view = itemView)
             }
         }
     }
@@ -78,5 +78,5 @@ private val RecyclerView.ViewHolder.context
     get() = this.itemView.context
 
 interface OnItemClickListener {
-    fun onClick(movie: Movie)
+    fun onClick(movie: Movie, view: View)
 }

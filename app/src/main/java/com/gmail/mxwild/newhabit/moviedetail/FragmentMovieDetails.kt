@@ -1,5 +1,6 @@
 package com.gmail.mxwild.newhabit.moviedetail
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import coil.load
 import com.aids61517.easyratingview.EasyRatingView
 import com.gmail.mxwild.newhabit.R
 import com.gmail.mxwild.newhabit.model.data.Movie
+import com.google.android.material.transition.MaterialContainerTransform
 
 class FragmentMovieDetails : Fragment() {
 
@@ -22,6 +24,13 @@ class FragmentMovieDetails : Fragment() {
     private var movie: Movie? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            drawingViewId = R.id.fragment_container
+            duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
+            scrimColor = Color.TRANSPARENT
+        }
+
         super.onCreate(savedInstanceState)
         arguments?.let {
             movie = it.getParcelable(MOVIE_OBJECT)
