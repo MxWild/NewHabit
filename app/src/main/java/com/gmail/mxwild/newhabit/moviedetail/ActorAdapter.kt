@@ -23,6 +23,11 @@ class ActorAdapter : RecyclerView.Adapter<ActorAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind(actors[position])
+
+/*        holder.itemView.animation = AnimationUtils.loadAnimation(
+            holder.itemView.context,
+            R.anim.list_animation
+        )*/
     }
 
     override fun getItemCount(): Int = actors.size

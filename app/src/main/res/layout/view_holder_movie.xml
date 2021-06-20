@@ -9,6 +9,7 @@
     android:layout_marginEnd="@dimen/margin_2x4"
     android:layout_marginBottom="@dimen/margin_2x8"
     android:padding="@dimen/padding_2x4"
+    android:transitionGroup="true"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp"
     app:cardPreventCornerOverlap="false"
